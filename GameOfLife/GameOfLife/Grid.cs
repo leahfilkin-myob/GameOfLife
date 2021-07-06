@@ -25,5 +25,23 @@ namespace GameOfLife
                 Cells[liveCell.X][liveCell.Y] = Cell.Alive;
             }
         }
+        
+            public List<Cell> GetAdjacentCells(int x, int y)
+            {
+                var rowsToCheck = Enumerable.Range(x - 1, 3);
+                var columnsToCheck = Enumerable.Range(y - 1, 3);
+                var coordsToCheck = rowsToCheck
+                    .SelectMany(line => columnsToCheck
+                        .Select(column => new {Line = line, Column = column}));
+                var coordsNotOnEdge = coordsToCheck
+                    .Where(coords => 
+                        coords.Line >= 0 && coords.Line <= Cells.Count - 1 
+                                         && coords.Column >= 0 && coords.Column <= Cells[0].Count - 1);
+                var adjacentCoords = coordsNotOnEdge
+                    .Where(coords => !(coords.Line == x && coords.Column == y));
+            
+                return
+                    adjacentCoords.Select(coords => Cells[coords.Line][coords.Column]).ToList();
+            }
+        }
     }
-}
