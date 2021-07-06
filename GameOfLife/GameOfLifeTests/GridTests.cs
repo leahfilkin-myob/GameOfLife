@@ -45,7 +45,7 @@ namespace GameOfLifeTests
                 grid.GetAdjacentCells(adjacentCellsData.Line,adjacentCellsData.Column);
             Assert.Equal(adjacentCellsData.ExpectedCells,adjacentCells);
         }
-        
+
         public class AdjacentCellsData
         {
             public List<Cell> ExpectedCells;
