@@ -1,7 +1,8 @@
 namespace GameOfLife
 {
-    public class Cell
+    public enum Cell
     {
-        
+        Alive,
+        Dead
     }
 }
