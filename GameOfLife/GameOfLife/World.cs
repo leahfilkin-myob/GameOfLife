@@ -14,7 +14,7 @@ namespace GameOfLife
         {
             var cellsToCheck = Grid.GetAdjacentCells(x, y);
             var amountOfLiveCells = cellsToCheck.Count(cell => cell == Cell.Alive);
-            if (amountOfLiveCells == 0)
+            if (amountOfLiveCells < 2)
             {
                 Grid.Cells[x][y] = Cell.Dead;
             }
