@@ -41,8 +41,10 @@ namespace GameOfLifeTests
             var grid = 
                 new Grid(adjacentCellsData.NumberOfRows, adjacentCellsData.NumberOfColumns,
                     adjacentCellsData.LiveCellInput);
+            
             var adjacentCells = 
                 grid.GetAdjacentCells(adjacentCellsData.Line,adjacentCellsData.Column);
+            
             Assert.Equal(adjacentCellsData.ExpectedCells,adjacentCells);
         }
 
