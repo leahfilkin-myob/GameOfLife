@@ -19,7 +19,11 @@ namespace GameOfLife
 
         public void UpdateCell(int x, int y)
         {
-            Grid.Cells[x][y] = Cell.Dead;
+            if (CellShouldDie(x, y))
+            {
+                Grid.Cells[x][y] = Cell.Dead;
+            }
         }
+        
     }
 }
