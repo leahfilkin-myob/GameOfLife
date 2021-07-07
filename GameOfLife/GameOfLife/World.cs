@@ -10,11 +10,15 @@ namespace GameOfLife
             Grid = grid;
         }
 
-        private bool CellShouldDie(int x, int y)
+        private int GetNumberOfAdjacentLiveCells(int x, int y)
         {
             var cellsToCheck = Grid.GetAdjacentCells(x, y);
-            var amountOfLiveCells = cellsToCheck.Count(cell => cell == Cell.Alive);
-            return amountOfLiveCells < 2 || amountOfLiveCells > 3;
+            return cellsToCheck.Count(cell => cell == Cell.Alive);
+        }
+
+        private bool CellShouldDie(int x, int y)
+        {
+            return GetNumberOfAdjacentLiveCells(x, y) < 2 || GetNumberOfAdjacentLiveCells(x, y) > 3;
         }
 
         public void UpdateCell(int x, int y)
@@ -23,7 +27,15 @@ namespace GameOfLife
             {
                 Grid.Cells[x][y] = Cell.Dead;
             }
+            if (CellShouldComeAlive(x, y))
+            {
+                Grid.Cells[x][y] = Cell.Alive;
+            }
         }
-        
+
+        private bool CellShouldComeAlive(int x, int y)
+        {
+            return GetNumberOfAdjacentLiveCells(x, y) == 3;
+        }
     }
 }

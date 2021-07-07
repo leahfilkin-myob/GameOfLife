@@ -33,6 +33,23 @@ namespace GameOfLifeTests
             Assert.Equal(scenariosThatKeepCellAliveData.UpdatedCellStatus, world.Grid.Cells[5][5]);
         }
 
+        [Fact]
+        public void ChangesDeadCellToLiveCellIf3Neighbours()
+        {
+            var world = new World(
+                new Grid(10, 10, new List<Point>
+                {
+                    new Point(5,4),
+                    new Point(5,6),
+                    new Point(6,5)
+                }));
+            
+            world.UpdateCell(5, 5);
+            
+            Assert.Equal(Cell.Alive, world.Grid.Cells[5][5]);
+
+        }
+
         public class ScenariosThatKeepCellAliveData
         {
             public List<Point> LiveCells;
