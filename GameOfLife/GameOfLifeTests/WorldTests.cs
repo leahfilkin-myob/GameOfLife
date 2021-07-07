@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Common;
 using GameOfLife;
 using Xunit;
 
@@ -8,29 +9,29 @@ namespace GameOfLifeTests
     {
         [Theory]
         [MemberData(nameof(ScenariosThatCauseDeath))]
-        public void TurnsLiveCellToDeadIfIncorrectNumberOfNeighbours(
+        public void DecidesCellShouldDieIfIncorrectNumberOfNeighbours(
             ScenariosThatCauseDeathData scenariosThatCauseDeathData)
         {
             var world = new World(
                 new Grid(10, 10, scenariosThatCauseDeathData.LiveCells));
 
-            world.UpdateCellState(scenariosThatCauseDeathData.XCoordToUpdate,
+            var cellShouldDie = world.CellShouldDie(scenariosThatCauseDeathData.XCoordToUpdate,
                 scenariosThatCauseDeathData.YCoordToUpdate);
 
-            Assert.Equal(scenariosThatCauseDeathData.UpdatedCellStatus, world.Grid.Cells[5][5]);
+            Assert.True(cellShouldDie);
         }
 
         [Theory]
         [MemberData(nameof(ScenariosThatKeepCellAlive))]
-        public void KeepsLiveCellAliveIfEnoughLiveNeighbours(ScenariosThatKeepCellAliveData scenariosThatKeepCellAliveData)
+        public void DecidesCellShouldStayAliveIfEnoughLiveNeighbours(ScenariosThatKeepCellAliveData scenariosThatKeepCellAliveData)
         {
             var world = new World(
                 new Grid(10, 10, scenariosThatKeepCellAliveData.LiveCells));
 
-            world.UpdateCellState(scenariosThatKeepCellAliveData.XCoordToUpdate,
+            var cellShouldDie = world.CellShouldDie(scenariosThatKeepCellAliveData.XCoordToUpdate,
                 scenariosThatKeepCellAliveData.YCoordToUpdate);
 
-            Assert.Equal(scenariosThatKeepCellAliveData.UpdatedCellStatus, world.Grid.Cells[5][5]);
+            Assert.False(cellShouldDie);
         }
 
         public class ScenariosThatKeepCellAliveData

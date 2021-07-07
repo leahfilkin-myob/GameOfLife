@@ -10,14 +10,16 @@ namespace GameOfLife
             Grid = grid;
         }
 
-        public void UpdateCellState(int x, int y)
+        public bool CellShouldDie(int x, int y)
         {
             var cellsToCheck = Grid.GetAdjacentCells(x, y);
             var amountOfLiveCells = cellsToCheck.Count(cell => cell == Cell.Alive);
-            if (amountOfLiveCells < 2  || amountOfLiveCells > 3)
-            {
-                Grid.Cells[x][y] = Cell.Dead;
-            }
+            return amountOfLiveCells < 2 || amountOfLiveCells > 3;
+        }
+
+        public void UpdateCell(int x, int y)
+        {
+            Grid.Cells[x][y] = Cell.Dead;
         }
     }
 }
