@@ -55,6 +55,19 @@ namespace GameOfLifeTests
                     UpdatedCellStatus = Cell.Alive,
                     XCoordToUpdate = 5,
                     YCoordToUpdate = 5
+                },
+                new ScenariosThatKeepCellAliveData
+                {
+                    LiveCells = new List<Point>
+                    {
+                        new Point(5, 4),
+                        new Point(5, 5),
+                        new Point(5, 6),
+                        new Point(6, 5)
+                    },
+                    UpdatedCellStatus = Cell.Alive,
+                    XCoordToUpdate = 5,
+                    YCoordToUpdate = 5
                 }
             };
         public class ScenariosThatCauseDeathData

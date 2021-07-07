@@ -10,7 +10,7 @@ namespace GameOfLife
             Grid = grid;
         }
 
-        public bool CellShouldDie(int x, int y)
+        private bool CellShouldDie(int x, int y)
         {
             var cellsToCheck = Grid.GetAdjacentCells(x, y);
             var amountOfLiveCells = cellsToCheck.Count(cell => cell == Cell.Alive);
