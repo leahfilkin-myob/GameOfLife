@@ -14,10 +14,10 @@ namespace GameOfLifeTests
             var world = new World(
                 new Grid(10, 10, scenariosThatCauseDeathData.LiveCells));
 
-            world.UpdateCell(scenariosThatCauseDeathData.XCoordToUpdate,
+            var actualCellChange = world.GetCellsFate(scenariosThatCauseDeathData.XCoordToUpdate,
                 scenariosThatCauseDeathData.YCoordToUpdate);
 
-            Assert.Equal(scenariosThatCauseDeathData.UpdatedCellStatus, world.Grid.Cells[5][5]);
+            Assert.Equal(scenariosThatCauseDeathData.UpdatedCellStatus, actualCellChange);
         }
 
         [Theory]
@@ -27,10 +27,10 @@ namespace GameOfLifeTests
             var world = new World(
                 new Grid(10, 10, scenariosThatKeepCellAliveData.LiveCells));
 
-            world.UpdateCell(scenariosThatKeepCellAliveData.XCoordToUpdate,
+            var actualCellChange = world.GetCellsFate(scenariosThatKeepCellAliveData.XCoordToUpdate,
                 scenariosThatKeepCellAliveData.YCoordToUpdate);
 
-            Assert.Equal(scenariosThatKeepCellAliveData.UpdatedCellStatus, world.Grid.Cells[5][5]);
+            Assert.Equal(scenariosThatKeepCellAliveData.UpdatedCellStatus, actualCellChange);
         }
 
         [Fact]
@@ -44,10 +44,70 @@ namespace GameOfLifeTests
                     new Point(6,5)
                 }));
             
-            world.UpdateCell(5, 5);
+            var actualCellChange = world.GetCellsFate(5, 5);
             
-            Assert.Equal(Cell.Alive, world.Grid.Cells[5][5]);
+            Assert.Equal(Cell.Alive, actualCellChange);
 
+        }
+
+        [Fact]
+        public void UpdatesAllCellsOnTheBoardAtOnce()
+        {
+            var world = new World(
+                new Grid(5, 5, new List<Point>
+                {
+                    new Point(2,1),
+                    new Point(2,2),
+                    new Point(2,3),
+                    new Point(3,2)
+                }));
+            var expectedResult = new List<List<Cell>>
+            {
+                new List<Cell>
+                {
+                    Cell.Dead,
+                    Cell.Dead,
+                    Cell.Dead,
+                    Cell.Dead,
+                    Cell.Dead, 
+                },
+                new List<Cell>
+                {
+                    Cell.Dead,
+                    Cell.Dead,
+                    Cell.Alive,
+                    Cell.Dead,
+                    Cell.Dead,
+                },
+                new List<Cell>
+                {
+                    Cell.Dead,
+                    Cell.Alive,
+                    Cell.Alive,
+                    Cell.Alive, 
+                    Cell.Dead,
+                },
+                new List<Cell>
+                {
+                    Cell.Dead,
+                    Cell.Alive,
+                    Cell.Alive,
+                    Cell.Alive,
+                    Cell.Dead,
+                },
+                new List<Cell>
+                {
+                    Cell.Dead,
+                    Cell.Dead,
+                    Cell.Dead,
+                    Cell.Dead,
+                    Cell.Dead,
+                }
+            };
+            
+            world.RunOneTick();
+            
+            Assert.Equal(expectedResult, world.Grid.Cells);
         }
         
         

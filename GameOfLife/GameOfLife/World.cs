@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualBasic.FileIO;
 
 namespace GameOfLife
 {
@@ -21,21 +23,36 @@ namespace GameOfLife
             return GetNumberOfAdjacentLiveCells(x, y) < 2 || GetNumberOfAdjacentLiveCells(x, y) > 3;
         }
 
-        public void UpdateCell(int x, int y)
+        public Cell GetCellsFate(int x, int y)
         {
             if (CellShouldDie(x, y))
             {
-                Grid.Cells[x][y] = Cell.Dead;
+                return Cell.Dead;
             }
             if (CellShouldComeAlive(x, y))
             {
-                Grid.Cells[x][y] = Cell.Alive;
+                return Cell.Alive;
             }
+            return Grid.Cells[x][y];
         }
 
         private bool CellShouldComeAlive(int x, int y)
         {
             return GetNumberOfAdjacentLiveCells(x, y) == 3;
+        }
+
+        public void RunOneTick()
+        {
+            var resultOfRun = new List<List<Cell>>();
+            for (var i = 0; i < Grid.Cells.Count; i++)
+            {
+                resultOfRun.Add(new List<Cell>());
+                for (var j = 0; j < Grid.Cells[0].Count; j++)
+                {
+                    resultOfRun[i].Add(GetCellsFate(i,j));
+                }
+            }
+            Grid.Cells = resultOfRun;
         }
     }
 }
