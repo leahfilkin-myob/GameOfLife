@@ -57,7 +57,7 @@ namespace GameOfLifeTests
             var world = new World(
                 new Grid(5, 5, entireBoardUpdateData.LiveCells));
 
-            world.RunOneTick();
+            world.RunOneGeneration();
             
             Assert.Equal(entireBoardUpdateData.UpdatedBoard, world.Grid.Cells);
         }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.VisualBasic.FileIO;
 
 namespace GameOfLife
@@ -41,7 +42,7 @@ namespace GameOfLife
             return GetNumberOfAdjacentLiveCells(x, y) == 3;
         }
 
-        public void RunOneTick()
+        public void RunOneGeneration()
         {
             var resultOfRun = new List<List<Cell>>();
             for (var i = 0; i < Grid.Cells.Count; i++)
