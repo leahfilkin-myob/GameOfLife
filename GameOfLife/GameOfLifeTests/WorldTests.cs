@@ -50,66 +50,138 @@ namespace GameOfLifeTests
 
         }
 
-        [Fact]
-        public void UpdatesAllCellsOnTheBoardAtOnce()
+        [Theory]
+        [MemberData(nameof(EntireBoardUpdate))]
+        public void UpdatesAllCellsOnTheBoardAtOnce(EntireBoardUpdateData entireBoardUpdateData)
         {
             var world = new World(
-                new Grid(5, 5, new List<Point>
-                {
-                    new Point(2,1),
-                    new Point(2,2),
-                    new Point(2,3),
-                    new Point(3,2)
-                }));
-            var expectedResult = new List<List<Cell>>
-            {
-                new List<Cell>
-                {
-                    Cell.Dead,
-                    Cell.Dead,
-                    Cell.Dead,
-                    Cell.Dead,
-                    Cell.Dead, 
-                },
-                new List<Cell>
-                {
-                    Cell.Dead,
-                    Cell.Dead,
-                    Cell.Alive,
-                    Cell.Dead,
-                    Cell.Dead,
-                },
-                new List<Cell>
-                {
-                    Cell.Dead,
-                    Cell.Alive,
-                    Cell.Alive,
-                    Cell.Alive, 
-                    Cell.Dead,
-                },
-                new List<Cell>
-                {
-                    Cell.Dead,
-                    Cell.Alive,
-                    Cell.Alive,
-                    Cell.Alive,
-                    Cell.Dead,
-                },
-                new List<Cell>
-                {
-                    Cell.Dead,
-                    Cell.Dead,
-                    Cell.Dead,
-                    Cell.Dead,
-                    Cell.Dead,
-                }
-            };
-            
+                new Grid(5, 5, entireBoardUpdateData.LiveCells));
+
             world.RunOneTick();
             
-            Assert.Equal(expectedResult, world.Grid.Cells);
+            Assert.Equal(entireBoardUpdateData.UpdatedBoard, world.Grid.Cells);
         }
-        
+
+        public class EntireBoardUpdateData
+        {
+            public List<Point> LiveCells;
+            public List<List<Cell>> UpdatedBoard;
+        }
+
+        public static IEnumerable<object[]> EntireBoardUpdate =>
+            new TheoryData<EntireBoardUpdateData>
+            {
+                new EntireBoardUpdateData
+                {
+                    LiveCells = new List<Point>
+                    {
+                        new Point(2,1),
+                        new Point(2,2),
+                        new Point(2,3),
+                        new Point(3,2)
+                    },
+                    UpdatedBoard = new List<List<Cell>>
+                    {
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead, 
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Alive,
+                            Cell.Dead,
+                            Cell.Dead,
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive, 
+                            Cell.Dead,
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Dead,
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                        }
+                    }
+                },
+                new EntireBoardUpdateData
+                {
+                    LiveCells = new List<Point>
+                    {
+                        new Point(1,0),
+                        new Point(1,2),
+                        new Point(1,4),
+                        new Point(2,1),
+                        new Point(2,3),
+                        new Point(3,0),
+                        new Point(3,4),
+                        new Point(4,2),
+                    },
+                    UpdatedBoard = new List<List<Cell>>
+                    {
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Alive,
+                            Cell.Dead,
+                            Cell.Alive,
+                            Cell.Dead, 
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Dead,
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                            Cell.Alive,
+                        },
+                        new List<Cell>
+                        {
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                            Cell.Dead,
+                        }
+                    }
+                }
+            };
         
 
         public class ScenariosThatKeepCellAliveData
