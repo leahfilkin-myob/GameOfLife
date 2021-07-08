@@ -49,6 +49,8 @@ namespace GameOfLifeTests
             Assert.Equal(Cell.Alive, world.Grid.Cells[5][5]);
 
         }
+        
+        
 
         public class ScenariosThatKeepCellAliveData
         {

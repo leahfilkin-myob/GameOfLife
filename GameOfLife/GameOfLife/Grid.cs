@@ -28,20 +28,29 @@ namespace GameOfLife
         
             public List<Cell> GetAdjacentCells(int x, int y)
             {
-                var rowsToCheck = Enumerable.Range(x - 1, 3);
-                var columnsToCheck = Enumerable.Range(y - 1, 3);
+                var rowsToCheck = Enumerable.Range(x - 1, 3)
+                    .Select(GetWrapAroundIndexForRow);
+                var columnsToCheck = Enumerable.Range(y - 1, 3)
+                    .Select(GetWrapAroundIndexForColumn);
                 var coordsToCheck = rowsToCheck
                     .SelectMany(line => columnsToCheck
                         .Select(column => new {Line = line, Column = column}));
-                var coordsNotOnEdge = coordsToCheck
-                    .Where(coords => 
-                        coords.Line >= 0 && coords.Line <= Cells.Count - 1 
-                                         && coords.Column >= 0 && coords.Column <= Cells[0].Count - 1);
-                var adjacentCoords = coordsNotOnEdge
+                var adjacentCoords = coordsToCheck
                     .Where(coords => !(coords.Line == x && coords.Column == y));
-            
+
                 return
-                    adjacentCoords.Select(coords => Cells[coords.Line][coords.Column]).ToList();
+                    adjacentCoords
+                        .Select(coords => Cells[coords.Line][coords.Column]).ToList();
             }
-        }
+
+            private int GetWrapAroundIndexForRow(int i)
+            {
+                return (i + Cells.Count) % Cells.Count;
+            }
+            
+            private int GetWrapAroundIndexForColumn(int i)
+            {
+                return (i + Cells[0].Count) % Cells[0].Count;
+            }
+    }
     }

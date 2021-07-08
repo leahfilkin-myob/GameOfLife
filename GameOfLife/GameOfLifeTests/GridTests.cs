@@ -36,14 +36,14 @@ namespace GameOfLifeTests
         
         [Theory]
         [MemberData(nameof(AdjacentCells))]
-        public void CanFindAdjacentCellsToAGivenCell(AdjacentCellsData adjacentCellsData)
+        public void CanFindAdjacentCellsToAGivenCellWithWrappingFeature(AdjacentCellsData adjacentCellsData)
         {
             var grid = 
                 new Grid(adjacentCellsData.NumberOfRows, adjacentCellsData.NumberOfColumns,
                     adjacentCellsData.LiveCellInput);
             
             var adjacentCells = 
-                grid.GetAdjacentCells(adjacentCellsData.Line,adjacentCellsData.Column);
+                grid.GetAdjacentCells(adjacentCellsData.Row,adjacentCellsData.Column);
             
             Assert.Equal(adjacentCellsData.ExpectedCells,adjacentCells);
         }
@@ -53,7 +53,7 @@ namespace GameOfLifeTests
             public List<Cell> ExpectedCells;
             public int NumberOfRows;
             public int NumberOfColumns;
-            public int Line;
+            public int Row;
             public int Column;
             public List<Point> LiveCellInput;
 
@@ -63,55 +63,47 @@ namespace GameOfLifeTests
             new TheoryData<AdjacentCellsData>
             {
                 new AdjacentCellsData
-                {   
+                {
                     ExpectedCells = new List<Cell>
                     {
                         Cell.Dead,
                         Cell.Dead,
-                        Cell.Dead
+                        Cell.Dead,
+                        Cell.Alive,
+                        Cell.Dead,
+                        Cell.Alive,
+                        Cell.Dead, 
+                        Cell.Alive
                     },
                     NumberOfRows = 3,
                     NumberOfColumns = 3,
-                    Line = 0,
+                    Row = 0,
                     Column = 0,
                     LiveCellInput = new List<Point>
                     {
-                        new Point(0,0)
+                        new Point(0,2),
+                        new Point(1,1),
+                        new Point(1,2),
                     }
                 },
                 new AdjacentCellsData
                 {   
                     ExpectedCells = new List<Cell>
                     {
+                        Cell.Dead,
+                        Cell.Dead,
+                        Cell.Dead,
                         Cell.Alive,
                         Cell.Dead,
                         Cell.Dead,
                         Cell.Alive,
-                        Cell.Dead
+                        Cell.Dead,
+
                     },
                     NumberOfRows = 3,
                     NumberOfColumns = 3,
-                    Line = 0,
+                    Row = 0,
                     Column = 1,
-                    LiveCellInput = new List<Point>
-                    {
-                        new Point(0,0),
-                        new Point(1,1)
-                    }
-                },
-                new AdjacentCellsData
-                {   
-                    ExpectedCells = new List<Cell>
-                    {
-                        Cell.Dead,
-                        Cell.Alive,
-                        Cell.Dead
-                
-                    },
-                    NumberOfRows = 3,
-                    NumberOfColumns = 3,
-                    Line = 0,
-                    Column = 2,
                     LiveCellInput = new List<Point>
                     {
                         new Point(0,0),
@@ -122,15 +114,19 @@ namespace GameOfLifeTests
                 {  
                     ExpectedCells = new List<Cell>
                     {
+                        Cell.Dead,
                         Cell.Alive,
                         Cell.Dead,
                         Cell.Dead,
                         Cell.Dead,
-                        Cell.Dead
+                        Cell.Dead,
+                        Cell.Dead,
+                        Cell.Dead,
+
                     },
                     NumberOfRows = 3,
                     NumberOfColumns = 3,
-                    Line = 1,
+                    Row = 1,
                     Column = 0,
                     LiveCellInput = new List<Point>
                     {
@@ -153,7 +149,7 @@ namespace GameOfLifeTests
                     },
                     NumberOfRows = 3,
                     NumberOfColumns = 3,
-                    Line = 1,
+                    Row = 1,
                     Column = 1,
                     LiveCellInput = new List<Point>
                     {
@@ -169,10 +165,15 @@ namespace GameOfLifeTests
                         Cell.Dead,
                         Cell.Dead,
                         Cell.Dead,
+                        Cell.Dead,
+                        Cell.Dead,
+                        Cell.Dead,
+                        Cell.Alive,
+                        Cell.Dead
                     },
                     NumberOfRows = 5,
                     NumberOfColumns = 4,
-                    Line = 4,
+                    Row = 4,
                     Column = 0,
                     LiveCellInput = new List<Point>
                     {
@@ -189,10 +190,13 @@ namespace GameOfLifeTests
                         Cell.Dead,
                         Cell.Alive,
                         Cell.Dead,
+                        Cell.Dead,
+                        Cell.Dead,
+                        Cell.Dead,
                     },
                     NumberOfRows = 10,
                     NumberOfColumns = 13,
-                    Line = 9,
+                    Row = 9,
                     Column = 8,
                     LiveCellInput = new List<Point>
                     {
@@ -205,14 +209,22 @@ namespace GameOfLifeTests
                     {
                         Cell.Alive,
                         Cell.Alive,
+                        Cell.Dead,
                         Cell.Alive,
+                        Cell.Dead,
+                        Cell.Dead,
+                        Cell.Dead,
+                        Cell.Alive,
+
+                        
                     },
                     NumberOfRows = 15,
                     NumberOfColumns = 18,
-                    Line = 14,
+                    Row = 14,
                     Column = 17,
                     LiveCellInput = new List<Point>
                     {
+                        new Point(0,0),
                         new Point(13,16),
                         new Point(13,17),
                         new Point(14,16),
