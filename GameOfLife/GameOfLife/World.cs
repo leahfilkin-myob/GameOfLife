@@ -44,16 +44,12 @@ namespace GameOfLife
 
         public void RunOneGeneration()
         {
-            var resultOfRun = new List<List<Cell>>();
-            for (var i = 0; i < Grid.Cells.Count; i++)
-            {
-                resultOfRun.Add(new List<Cell>());
-                for (var j = 0; j < Grid.Cells[0].Count; j++)
-                {
-                    resultOfRun[i].Add(GetCellsFate(i,j));
-                }
-            }
-            Grid.Cells = resultOfRun;
+            var cellsToCheck = Grid.Cells
+                .Select((row, i) => row
+                    .Select((cell, j) => new {Line = i, Column = j, Cell = cell}));
+            
+            Grid.Cells = cellsToCheck.Select(cells => cells
+                .Select(cell => GetCellsFate(cell.Line, cell.Column)).ToList()).ToList();
         }
     }
 }
