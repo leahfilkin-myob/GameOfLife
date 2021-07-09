@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GameOfLife;
+using GameOfLife.GameOfLifeConsole;
 using Xunit;
 
 namespace GameOfLifeTests
@@ -17,7 +18,7 @@ namespace GameOfLifeTests
                 "..xxx",
                 ".xxx."
             };
-            Assert.Equal(expectedResult, stringInput.TakeInput());
+            Assert.Equal(expectedResult, stringInput.ReadInputFile("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt"));
         }
     }
 }

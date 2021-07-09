@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using GameOfLife.GameOfLifeConsole;
 
 namespace GameOfLife
 {
@@ -20,7 +21,7 @@ namespace GameOfLife
             {
                 Thread.Sleep(milliseconds);
                 Console.Clear();
-                Console.WriteLine(GridOutput.ConvertToOutput(_world.Grid));
+                Console.WriteLine(StringOutput.ConvertToOutput(_world.Grid));
                 _world.RunOneGeneration();
             }
         }

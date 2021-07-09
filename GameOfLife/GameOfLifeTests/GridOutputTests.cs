@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GameOfLife;
+using GameOfLife.GameOfLifeConsole;
 using Xunit;
 
 namespace GameOfLifeTests
@@ -12,7 +13,7 @@ namespace GameOfLifeTests
             var grid = new Grid(3,3, new List<Point> {new Point(0,0)});
             var expectedOutput = "🟨🟦🟦\n🟦🟦🟦\n🟦🟦🟦";
 
-            var output = GridOutput.ConvertToOutput(grid);
+            var output = StringOutput.ConvertToOutput(grid);
             
             Assert.Equal(expectedOutput, output);
         }

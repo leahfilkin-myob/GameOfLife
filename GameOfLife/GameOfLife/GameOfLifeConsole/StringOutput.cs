@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
-namespace GameOfLife
+namespace GameOfLife.GameOfLifeConsole
 {
-    public class GridOutput
+    public class StringOutput
     {
         public static string ConvertToOutput(Grid grid)
         {
