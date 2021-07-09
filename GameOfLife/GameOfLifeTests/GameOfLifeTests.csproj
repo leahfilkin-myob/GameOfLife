@@ -23,4 +23,8 @@
       <ProjectReference Include="..\GameOfLife\GameOfLife.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="TestInputFiles" />
+    </ItemGroup>
+
 </Project>

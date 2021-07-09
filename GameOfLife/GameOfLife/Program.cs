@@ -8,7 +8,7 @@ namespace GameOfLife
         static void Main(string[] args)
         {
             var world = new World(
-                new Grid(10, 10, new List<Point>
+                new Grid(7, 7, new List<Point>
                 {
                     new Point(5,4),
                     new Point(5,6),

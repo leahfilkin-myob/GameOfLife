@@ -15,12 +15,13 @@ namespace GameOfLife
         
         public void RunGenerations()
         {
-            int milliseconds = 500;
-            Thread.Sleep(milliseconds);
+            int milliseconds = 1000;
             while (true)
             {
+                Thread.Sleep(milliseconds);
+                Console.Clear();
+                Console.WriteLine(GridOutput.ConvertToOutput(_world.Grid));
                 _world.RunOneGeneration();
-                Console.WriteLine(1);
             }
         }
     }
