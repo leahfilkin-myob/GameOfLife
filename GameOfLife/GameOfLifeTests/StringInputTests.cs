@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using GameOfLife;
 using GameOfLife.GameOfLifeConsole;
 using Xunit;
@@ -19,6 +20,48 @@ namespace GameOfLifeTests
                 ".xxx."
             };
             Assert.Equal(expectedResult, stringInput.ReadInputFile("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt"));
+        }
+
+        [Fact]
+        public void ThrowErrorWithErrorMessageIfFileDoesNotExist()
+        {
+            var stringInput = new StringInput();
+            
+            var exception = Assert.Throws<FileNotFoundException>(() => stringInput.ReadInputFile("/Users/Leah.Filkin/input.txt"));
+            Assert.Equal("That file does not exist", exception.Message);
+        }
+
+        [Fact]
+        public void GetsLiveCellsFromInput()
+        {
+            var stringInput = new StringInput();
+            var input = new List<string>
+            {
+                "...x.",
+                "..x.x",
+                "..xxx",
+                ".xxx."
+            };
+            var expectedLiveCellCoords = new List<Point>
+            {
+                new Point(0,3),
+                new Point(1,2),
+                new Point(1,4),
+                new Point(2,2),
+                new Point(2,3),
+                new Point(2,4),
+                new Point(3,1),
+                new Point(3,2),
+                new Point(3,3)
+            };
+
+            var liveCellCoords = stringInput.GetLiveCells(input);
+            
+            Assert.Equal(expectedLiveCellCoords, liveCellCoords);
+            
+
+
+
         }
     }
 }
