@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,15 @@ namespace GameOfLife.GameOfLifeConsole
             var indexesAsPoints = input.SelectMany((row, i) => row
                 .Select((square, j) => new Point(i, j)));
             return
-                indexesAsPoints.Where(point => input[point.X][point.Y] == 'x').ToList();
+                indexesAsPoints.Where(point => char.ToLower(input[point.X][point.Y]) == 'x').ToList();
+        }
+
+        public void Validate(List<string> input)
+        {
+            if (input.Any(row => row.Any(character => char.ToLower(character) != 'x' || character != '.')))
+            {
+                throw new ArgumentException("You can only use x and . characters in your input");
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using GameOfLife;
@@ -58,9 +59,16 @@ namespace GameOfLifeTests
             var liveCellCoords = stringInput.GetLiveCells(input);
             
             Assert.Equal(expectedLiveCellCoords, liveCellCoords);
-            
+        }
 
+        [Fact]
+        public void ThrowErrorIfInputDoesNotConsistOfOnlyPeriodsAndXCharacters()
+        {
+            var stringInput = new StringInput();
 
+            var input = stringInput.ReadInputFile("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/inputConsistsOfMoreThanPeriodsAndXCharacters.txt");
+
+            Assert.Throws<ArgumentException>(() => stringInput.Validate(input));
 
         }
     }
