@@ -3,9 +3,9 @@ using GameOfLife;
 using GameOfLife.GameOfLifeConsole;
 using Xunit;
 
-namespace GameOfLifeTests
+namespace GameOfLifeTests.GameOfLifeConsoleTests
 {
-    public class GridOutputTests
+    public class StringOutputTests
     {
         [Fact]
         public void ConvertsGridToConsoleFriendlyFormat()

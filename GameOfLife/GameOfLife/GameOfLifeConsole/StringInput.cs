@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace GameOfLife.GameOfLifeConsole
 {
-    public class StringInput
+    public static class StringInput
     {
 
-        public List<string> ReadInputFile(string path)
+        public static List<string> GetInputFrom(string path)
         {
             if (!File.Exists(path))
             {
@@ -17,7 +17,7 @@ namespace GameOfLife.GameOfLifeConsole
             return File.ReadLines(path).ToList();
         }
 
-        public List<Point> GetLiveCells(List<string> input)
+        public static List<Point> GetLiveCells(List<string> input)
         {
             var indexesAsPoints = input.SelectMany((row, i) => row
                 .Select((square, j) => new Point(i, j)));
@@ -25,7 +25,7 @@ namespace GameOfLife.GameOfLifeConsole
                 indexesAsPoints.Where(point => char.ToLower(input[point.X][point.Y]) == 'x').ToList();
         }
 
-        public void Validate(List<string> input)
+        public static void Validate(List<string> input)
         {
             if (input.Any(row => row.Any(character => char.ToLower(character) != 'x' && character != '.')))
             {
@@ -37,9 +37,9 @@ namespace GameOfLife.GameOfLifeConsole
             }
         }
 
-        public Grid ConvertToGrid(string path)
+        public static Grid ConvertToGrid(string path)
         {
-            var input = ReadInputFile(path);
+            var input = GetInputFrom(path);
             Validate(input);
             return new Grid(input.Count, input[0].Length, GetLiveCells(input));
         }

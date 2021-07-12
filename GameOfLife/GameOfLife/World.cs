@@ -1,13 +1,10 @@
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using Microsoft.VisualBasic.FileIO;
 
 namespace GameOfLife
 {
     public class World
     {
-        public Grid Grid;
+        public readonly Grid Grid;
         public World(Grid grid)
         {
             Grid = grid;

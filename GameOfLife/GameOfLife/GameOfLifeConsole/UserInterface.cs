@@ -2,7 +2,7 @@ using System;
 
 namespace GameOfLife.GameOfLifeConsole
 {
-    public class UserInterface
+    public static class UserInterface
     {
         public static string AskForPath()
         {

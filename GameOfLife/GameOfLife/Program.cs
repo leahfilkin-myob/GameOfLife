@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GameOfLife.GameOfLifeConsole;
+﻿using GameOfLife.GameOfLifeConsole;
 
 namespace GameOfLife
 {
@@ -8,13 +6,9 @@ namespace GameOfLife
     {
         static void Main(string[] args)
         {
-            var stringInput = new StringInput();
             var path = UserInterface.AskForPath();
-            var grid = stringInput.ConvertToGrid(path);
-            var world = new World(grid);
-            var game = new Game(world);
-            game.RunGenerations();
-
+            var world = new World(StringInput.ConvertToGrid(path));
+            new Game(world).RunGenerations();
         }
     }
 }

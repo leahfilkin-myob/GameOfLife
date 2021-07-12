@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Drawing;
 using GameOfLife;
 using Xunit;
-using Point = GameOfLife.Point;
-
 namespace GameOfLifeTests
 {
     public class GridTests
