@@ -27,10 +27,20 @@ namespace GameOfLife.GameOfLifeConsole
 
         public void Validate(List<string> input)
         {
-            if (input.Any(row => row.Any(character => char.ToLower(character) != 'x' || character != '.')))
+            if (input.Any(row => row.Any(character => char.ToLower(character) != 'x' && character != '.')))
             {
                 throw new ArgumentException("You can only use x and . characters in your input");
             }
+            if (input.Any(row => row.Length != input[0].Length))
+            {
+                throw new ArgumentException("Your grid should have the same width for all rows");
+            }
+        }
+
+        public Grid ConvertToGrid(List<string> input)
+        {
+            Validate(input);
+            return new Grid(input.Count, input[0].Length, GetLiveCells(input));
         }
     }
 }

@@ -52,5 +52,20 @@ namespace GameOfLife
             {
                 return (i + Cells[0].Count) % Cells[0].Count;
             }
+            
+            public override bool Equals(object o)
+            {
+                if (o == null || GetType() != o.GetType())
+                {
+                    return false;
+                }
+
+                return o is Grid otherGrid && Cells == otherGrid.Cells;
+            }
+
+            public override int GetHashCode()
+            {
+                return (Cells != null ? Cells.GetHashCode() : 0);
+            }
     }
     }
