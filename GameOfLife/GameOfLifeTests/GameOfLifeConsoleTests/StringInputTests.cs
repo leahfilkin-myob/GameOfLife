@@ -74,6 +74,14 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
         }
 
         [Fact]
+        public void ThrowErrorIfInputDoesNotHaveAnyLiveCells()
+        {
+            var input = StringInput.GetInputFrom("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/inputWithNoLiveCells.txt");
+
+            Assert.Throws<ArgumentException>(() => StringInput.Validate(input));
+        }
+
+        [Fact]
         public void CanConvertInputFileToGridIfValid()
         {
             var path = "/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt";

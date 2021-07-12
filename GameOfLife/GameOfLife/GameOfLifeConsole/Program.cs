@@ -1,6 +1,4 @@
-﻿using GameOfLife.GameOfLifeConsole;
-
-namespace GameOfLife
+﻿namespace GameOfLife.GameOfLifeConsole
 {
     class Program
     {

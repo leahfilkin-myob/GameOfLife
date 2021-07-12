@@ -35,6 +35,12 @@ namespace GameOfLife.GameOfLifeConsole
             {
                 throw new ArgumentException("Your grid should have the same width for all rows");
             }
+
+            if (input.All(row => row.All(character => char.ToLower(character) != 'x')))
+            {
+                throw new ArgumentException("Your grid should have at least one live cell for the initial state");
+
+            }
         }
 
         public static Grid ConvertToGrid(string path)
