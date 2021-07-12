@@ -82,7 +82,7 @@ namespace GameOfLifeTests
         }
 
         [Fact]
-        public void CanConvertInputToGrid()
+        public void CanConvertInputFileToGridIfValid()
         {
             var stringInput = new StringInput();
             var input = stringInput.ReadInputFile("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt");
