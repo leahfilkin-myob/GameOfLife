@@ -85,7 +85,7 @@ namespace GameOfLifeTests
         public void CanConvertInputFileToGridIfValid()
         {
             var stringInput = new StringInput();
-            var input = stringInput.ReadInputFile("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt");
+            var path = "/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt";
             var expectedGrid = new Grid(4, 5, new List<Point>
             {
                 new Point(0, 3),
@@ -98,7 +98,7 @@ namespace GameOfLifeTests
                 new Point(3, 2),
                 new Point(3, 3)
             });
-            var grid = stringInput.ConvertToGrid(input);
+            var grid = stringInput.ConvertToGrid(path);
             
             Assert.Equal(expectedGrid.Cells, grid.Cells);
         }

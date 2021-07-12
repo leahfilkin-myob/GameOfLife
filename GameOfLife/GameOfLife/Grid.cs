@@ -10,23 +10,14 @@ namespace GameOfLife
 
         public Grid(int rows, int columns, List<Point> initialLiveCells)
         {
-            Cells = new List<List<Cell>>();
-
-            for (var row = 0; row < rows; row++)
-            {
-                Cells.Add(new List<Cell>());
-                for (var column = 0; column < columns; column++)
-                {
-                    Cells[row].Add(Cell.Dead);
-                }
-            }
-            foreach (var liveCell in initialLiveCells)
-            {
-                Cells[liveCell.X][liveCell.Y] = Cell.Alive;
-            }
+            Cells = Enumerable.Range(0, rows)
+                .Select(row => Enumerable.Range(0, columns)
+                    .Select(column => initialLiveCells
+                        .Contains(new Point(row, column)) ? Cell.Alive: Cell.Dead)
+                    .ToList())
+                .ToList();
         }
-        
-            public List<Cell> GetAdjacentCells(int x, int y)
+        public List<Cell> GetAdjacentCells(int x, int y)
             {
                 var rowsToCheck = Enumerable.Range(x - 1, 3)
                     .Select(GetWrapAroundIndexForRow);
@@ -52,20 +43,5 @@ namespace GameOfLife
             {
                 return (i + Cells[0].Count) % Cells[0].Count;
             }
-            
-            public override bool Equals(object o)
-            {
-                if (o == null || GetType() != o.GetType())
-                {
-                    return false;
-                }
-
-                return o is Grid otherGrid && Cells == otherGrid.Cells;
-            }
-
-            public override int GetHashCode()
-            {
-                return (Cells != null ? Cells.GetHashCode() : 0);
-            }
     }
-    }
+}

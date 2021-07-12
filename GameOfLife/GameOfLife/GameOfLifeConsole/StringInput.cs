@@ -37,8 +37,9 @@ namespace GameOfLife.GameOfLifeConsole
             }
         }
 
-        public Grid ConvertToGrid(List<string> input)
+        public Grid ConvertToGrid(string path)
         {
+            var input = ReadInputFile(path);
             Validate(input);
             return new Grid(input.Count, input[0].Length, GetLiveCells(input));
         }

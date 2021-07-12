@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameOfLife.GameOfLifeConsole;
 
 namespace GameOfLife
 {
@@ -7,15 +8,13 @@ namespace GameOfLife
     {
         static void Main(string[] args)
         {
-            var world = new World(
-                new Grid(7, 7, new List<Point>
-                {
-                    new Point(5,4),
-                    new Point(5,6),
-                    new Point(6,5)
-                }));
+            var stringInput = new StringInput();
+            var path = UserInterface.AskForPath();
+            var grid = stringInput.ConvertToGrid(path);
+            var world = new World(grid);
             var game = new Game(world);
             game.RunGenerations();
+
         }
     }
 }
