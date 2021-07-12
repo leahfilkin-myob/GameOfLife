@@ -12,16 +12,10 @@ namespace GameOfLife
             {
                 throw new ArgumentException("You cannot have a point that's co-ordinates are negative");
             }
-
             X = x;
             Y = y;
         }
-        
-        public override string ToString()
-        {
-            return $"({X},{Y})";
-        }
-        
+
         public override bool Equals(object o)
         {
             if (o == null || GetType() != o.GetType())
@@ -31,12 +25,5 @@ namespace GameOfLife
 
             return o is Point otherPoint && X == otherPoint.X && Y == otherPoint.Y;
         }
-        
-        public override int GetHashCode()
-        {
-            return (X << 2) ^ Y;
-        }
     }
-    
-    
 }

@@ -5,7 +5,8 @@
         static void Main(string[] args)
         {
             var path = UserInterface.AskForPath();
-            var world = new World(StringInput.ConvertToGrid(path));
+            var grid = StringInput.ConvertToGrid(path);
+            var world = new World(grid);
             new Game(world).RunGenerations();
         }
     }

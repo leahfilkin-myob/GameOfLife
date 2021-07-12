@@ -6,13 +6,22 @@ namespace GameOfLifeTests
     public class GridTests
     {
         [Fact]
-        public void IsSameDimensionsAsInputsGivenToIt()
+        public void BuildsAGridWithSameAmountOfRowsAsArgumentSpecified()
         {
             var grid = new Grid(10,20, new List<Point> {new Point(0,0)});
             
             Assert.Equal(10, grid.Cells.Count);
+        }
+        
+        [Fact]
+        public void BuildsAGridWithSameAmountOfColumnsAsArgumentSpecified()
+        {
+            var grid = new Grid(10,20, new List<Point> {new Point(0,0)});
+            
             Assert.Equal(20, grid.Cells[0].Count);
         }
+        
+
 
         [Fact]
         public void CellCoordinatesGivenForInitialStateAreLive()

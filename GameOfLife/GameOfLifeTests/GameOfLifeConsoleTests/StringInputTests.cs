@@ -57,32 +57,20 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
             Assert.Equal(expectedLiveCellCoords, liveCellCoords);
         }
 
-        [Fact]
-        public void ThrowErrorIfInputDoesNotConsistOfOnlyPeriodsAndXCharacters()
+        [Theory]
+        [InlineData("inputConsistsOfMoreThanPeriodsAndXCharacters.txt")]
+        [InlineData("inputDoesNotHaveSameDimensionsThroughout.txt")]
+        [InlineData("inputWithNoLiveCells.txt")]
+        public void ThrowErrorIfInputIsIncorrect(string file)
         {
-            var input = StringInput.GetInputFrom("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/inputConsistsOfMoreThanPeriodsAndXCharacters.txt");
+            var input = StringInput.GetInputFrom(
+                "/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/" + file);
 
             Assert.Throws<ArgumentException>(() => StringInput.Validate(input));
         }
 
         [Fact]
-        public void ThrowErrorIfInputDoesNotHaveSameDimensionsThroughoutWholeGrid()
-        {
-            var input = StringInput.GetInputFrom("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/inputDoesNotHaveSameDimensionsThroughout.txt");
-
-            Assert.Throws<ArgumentException>(() => StringInput.Validate(input));
-        }
-
-        [Fact]
-        public void ThrowErrorIfInputDoesNotHaveAnyLiveCells()
-        {
-            var input = StringInput.GetInputFrom("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/inputWithNoLiveCells.txt");
-
-            Assert.Throws<ArgumentException>(() => StringInput.Validate(input));
-        }
-
-        [Fact]
-        public void CanConvertInputFileToGridIfValid()
+        public void CanConvertInputFileToGridIfInputIsValid()
         {
             var path = "/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt";
             var expectedGrid = new Grid(4, 5, new List<Point>
