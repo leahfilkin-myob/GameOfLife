@@ -51,27 +51,27 @@ namespace GameOfLifeTests
         }
 
         [Theory]
-        [MemberData(nameof(EntireBoardUpdate))]
-        public void UpdatesAllCellsOnTheBoardAtOnce(EntireBoardUpdateData entireBoardUpdateData)
+        [MemberData(nameof(EntireGridUpdate))]
+        public void UpdatesAllCellsOnTheGridAtOnce(EntireGridUpdateData entireGridUpdateData)
         {
             var world = new World(
-                new Grid(5, 5, entireBoardUpdateData.LiveCells));
+                new Grid(5, 5, entireGridUpdateData.LiveCells));
 
             world.RunOneGeneration();
             
-            Assert.Equal(entireBoardUpdateData.UpdatedBoard, world.Grid.Cells);
+            Assert.Equal(entireGridUpdateData.UpdatedGrid, world.Grid.Cells);
         }
 
-        public class EntireBoardUpdateData
+        public class EntireGridUpdateData
         {
             public List<Point> LiveCells;
-            public List<List<Cell>> UpdatedBoard;
+            public List<List<Cell>> UpdatedGrid;
         }
 
-        public static IEnumerable<object[]> EntireBoardUpdate =>
-            new TheoryData<EntireBoardUpdateData>
+        public static IEnumerable<object[]> EntireGridUpdate =>
+            new TheoryData<EntireGridUpdateData>
             {
-                new EntireBoardUpdateData
+                new EntireGridUpdateData
                 {
                     LiveCells = new List<Point>
                     {
@@ -80,7 +80,7 @@ namespace GameOfLifeTests
                         new Point(2,3),
                         new Point(3,2)
                     },
-                    UpdatedBoard = new List<List<Cell>>
+                    UpdatedGrid = new List<List<Cell>>
                     {
                         new List<Cell>
                         {
@@ -124,7 +124,7 @@ namespace GameOfLifeTests
                         }
                     }
                 },
-                new EntireBoardUpdateData
+                new EntireGridUpdateData
                 {
                     LiveCells = new List<Point>
                     {
@@ -137,7 +137,7 @@ namespace GameOfLifeTests
                         new Point(3,4),
                         new Point(4,2),
                     },
-                    UpdatedBoard = new List<List<Cell>>
+                    UpdatedGrid = new List<List<Cell>>
                     {
                         new List<Cell>
                         {

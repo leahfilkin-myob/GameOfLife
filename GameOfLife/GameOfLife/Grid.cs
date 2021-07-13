@@ -20,9 +20,9 @@ namespace GameOfLife
         public List<Cell> GetAdjacentCells(int x, int y)
             {
                 var rowsToCheck = Enumerable.Range(x - 1, 3)
-                    .Select(GetWrapAroundIndexForRow);
+                    .Select(rowIndex => CalculateWrapAroundIndexForDimension(rowIndex, Cells.Count));
                 var columnsToCheck = Enumerable.Range(y - 1, 3)
-                    .Select(GetWrapAroundIndexForColumn);
+                    .Select(columnIndex => CalculateWrapAroundIndexForDimension(columnIndex, Cells[0].Count));
                 var coordsToCheck = rowsToCheck
                     .SelectMany(line => columnsToCheck
                         .Select(column => new {Line = line, Column = column}));
@@ -34,14 +34,9 @@ namespace GameOfLife
                         .Select(coords => Cells[coords.Line][coords.Column]).ToList();
             }
 
-            private int GetWrapAroundIndexForRow(int i)
+            private int CalculateWrapAroundIndexForDimension(int i, int dimensionSize)
             {
-                return (i + Cells.Count) % Cells.Count;
-            }
-            
-            private int GetWrapAroundIndexForColumn(int i)
-            {
-                return (i + Cells[0].Count) % Cells[0].Count;
+                return (i + dimensionSize) % dimensionSize;
             }
     }
 }

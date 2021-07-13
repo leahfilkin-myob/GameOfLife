@@ -1,5 +1,4 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using GameOfLife.GameOfLifeConsole;
 
@@ -16,7 +15,7 @@ namespace GameOfLife
         
         public void RunGenerations()
         {
-            int milliseconds = 1000;
+            int milliseconds = 100;
             while (true)
             {
                 Thread.Sleep(milliseconds);
