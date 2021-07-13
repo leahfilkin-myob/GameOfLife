@@ -18,6 +18,7 @@ namespace GameOfLife.GameOfLifeConsole
         
         public static Grid ConvertToGrid(List<string> input)
         {
+            
             InputValidator.Validate(input);
             return new Grid(input.Count, input[0].Length, GetLiveCells(input));
         }

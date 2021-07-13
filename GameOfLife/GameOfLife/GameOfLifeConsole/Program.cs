@@ -9,22 +9,18 @@ namespace GameOfLife.GameOfLifeConsole
         {
             try
             {
-                var methodOfInput = UserInterface.AskForMethodOfInput();
-                var input = UserInterface.HandleInput(methodOfInput);
+                var input = UserInterface.HandleInput();
                 var grid = StringInput.ConvertToGrid(input);
                 var world = new World(grid);
                 new Game(world).RunGenerations();
             }
-            catch (Exception e)
+            catch (ArgumentException a)
             {
-                if (e is ArgumentException || e is FileNotFoundException)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                else
-                {
-                    throw;
-                }
+                Console.WriteLine(a.Message);
+            }
+            catch (FileNotFoundException f)
+            {
+                Console.WriteLine(f.Message);
             }
         }
     }
