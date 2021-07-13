@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 
 namespace GameOfLife.GameOfLifeConsole
 {
@@ -17,9 +17,15 @@ namespace GameOfLife.GameOfLifeConsole
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                if (e is ArgumentException || e is FileNotFoundException)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                else
+                {
+                    throw;
+                }
             }
-
         }
     }
 }

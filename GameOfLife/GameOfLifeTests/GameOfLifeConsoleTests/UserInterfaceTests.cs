@@ -19,12 +19,5 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
             };
             Assert.Equal(expectedResult, UserInterface.GetInputFrom("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt"));
         }
-
-        [Fact]
-        public void ThrowErrorWithErrorMessageIfFileDoesNotExist()
-        {
-            var exception = Assert.Throws<FileNotFoundException>(() => UserInterface.GetInputFrom("/Users/Leah.Filkin/input.txt"));
-            Assert.Equal($"The file at /Users/Leah.Filkin/input.txt does not exist", exception.Message);
-        }
     }
 }
