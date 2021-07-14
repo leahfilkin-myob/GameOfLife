@@ -17,7 +17,7 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
                 "..xxx",
                 ".xxx."
             };
-            Assert.Equal(expectedResult, UserInterface.GetInputFrom("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt"));
+            Assert.Equal(expectedResult, UserInterface.GetFileInput("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt"));
         }
     }
 }

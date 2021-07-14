@@ -13,7 +13,7 @@ namespace GameOfLifeTests
         [InlineData("inputWithNoLiveCells.txt")]
         public void ThrowErrorIfInputIsIncorrect(string file)
         {
-            var input = UserInterface.GetInputFrom(
+            var input = UserInterface.GetFileInput(
                 "/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/" + file);
 
             Assert.Throws<ArgumentException>(() => InputValidator.Validate(input));

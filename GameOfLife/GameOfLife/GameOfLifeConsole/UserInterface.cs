@@ -7,7 +7,7 @@ namespace GameOfLife.GameOfLifeConsole
 {
     public static class UserInterface
     {
-        private static List<string> AskForConsoleGrid()
+        private static List<string> GetConsoleInput()
         {
             Console.WriteLine("Please enter your grid. Enter F on a new line to finish:");
             string line;
@@ -31,10 +31,21 @@ namespace GameOfLife.GameOfLifeConsole
             return Console.ReadLine();
         }
         
-        public static List<string> GetInputFrom(string path)
+        public static List<string> GetFileInput()
         {
-            FilePathValidator.CheckFileExists(path);
-            return File.ReadLines(path).ToList();
+            var path = AskForPath();
+            var input = new List<string>();
+            try
+            {
+                FilePathValidator.CheckFileExists(path);
+                input = File.ReadLines(path).ToList();
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                GetFileInput();
+            }
+            return input;
         }
 
         public static List<string> HandleInput(string methodOfInput)
@@ -42,11 +53,10 @@ namespace GameOfLife.GameOfLifeConsole
             switch (methodOfInput.ToUpper())
             {
                 case "C":
-                    return AskForConsoleGrid();
+                    return GetConsoleInput();
                 case "F":
                 {
-                    var path = AskForPath();
-                    return GetInputFrom(path);
+                    return GetFileInput();
                 }
             }
             throw new InvalidOperationException("You can only enter F for file or C for console for your method of input");
