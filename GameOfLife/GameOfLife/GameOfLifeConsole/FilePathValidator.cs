@@ -13,7 +13,7 @@ namespace GameOfLife.GameOfLifeConsole
             } 
         }
 
-        public static void CheckFileIsTxt(string path)
+        public static void CheckFileExtension(string path)
         {
             var extension = path.Substring(path.LastIndexOf('.'));
             if (extension != ".txt")

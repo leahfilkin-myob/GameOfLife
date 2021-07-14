@@ -25,5 +25,10 @@ namespace GameOfLife
 
             return o is Point otherPoint && X == otherPoint.X && Y == otherPoint.Y;
         }
+        
+        public override int GetHashCode()
+        {
+            return (X << 2) ^ Y;
+        }
     }
 }
