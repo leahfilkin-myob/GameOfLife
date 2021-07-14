@@ -9,7 +9,8 @@ namespace GameOfLife.GameOfLifeConsole
         {
             try
             {
-                var input = UserInterface.HandleInput();
+                var methodOfInput = UserInterface.AskForMethodOfInput();
+                var input = UserInterface.HandleInput(methodOfInput);
                 var grid = StringInput.ConvertToGrid(input);
                 var world = new World(grid);
                 new Game(world).RunGenerations();
