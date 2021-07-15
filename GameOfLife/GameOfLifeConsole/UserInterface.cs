@@ -33,7 +33,6 @@ namespace GameOfLife.GameOfLifeConsole
         
         public static List<string> GetFileInput(string path)
         {
-            FilePathValidator.CheckFileExists(path);
             return File.ReadLines(path).ToList();
         }
 
@@ -46,6 +45,8 @@ namespace GameOfLife.GameOfLifeConsole
                 case "F":
                 {
                     var path = GetPath();
+                    FilePathValidator.CheckFileExists(path);
+                    FilePathValidator.CheckFileExtension(path);
                     return GetFileInput(path);
                 }
             }
