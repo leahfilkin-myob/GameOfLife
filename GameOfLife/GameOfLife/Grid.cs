@@ -6,7 +6,7 @@ namespace GameOfLife
 {
     public class Grid
     {
-        public List<List<Cell>> Cells { get; set; }
+        public List<List<Cell>> Cells { get; }
 
         public Grid(int rows, int columns, List<Point> initialLiveCells)
         {
@@ -16,6 +16,11 @@ namespace GameOfLife
                         .Contains(new Point(row, column)) ? Cell.Alive: Cell.Dead)
                     .ToList())
                 .ToList();
+        }
+
+        public Grid(List<List<Cell>> cells)
+        {
+            Cells = cells;
         }
         public List<Cell> GetAdjacentCells(int x, int y)
             {

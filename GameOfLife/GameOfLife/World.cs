@@ -4,7 +4,7 @@ namespace GameOfLife
 {
     public class World
     {
-        public readonly Grid Grid;
+        public Grid Grid;
         public World(Grid grid)
         {
             Grid = grid;
@@ -45,8 +45,9 @@ namespace GameOfLife
                 .Select((row, i) => row
                     .Select((cell, j) => new {Line = i, Column = j, Cell = cell}));
             
-            Grid.Cells = cellsToCheck.Select(cells => cells
-                .Select(cell => GetCellsFate(cell.Line, cell.Column)).ToList()).ToList();
+            Grid = new Grid(
+                cellsToCheck.Select(cells => cells
+                .Select(cell => GetCellsFate(cell.Line, cell.Column)).ToList()).ToList());
         }
     }
 }
