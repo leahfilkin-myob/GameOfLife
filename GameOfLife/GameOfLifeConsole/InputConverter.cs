@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GameOfLife.GameOfLifeConsole
 {
-    public static class StringInput
+    public static class InputConverter
     {
 
         public static List<Point> GetLiveCells(List<string> input)
@@ -15,11 +15,19 @@ namespace GameOfLife.GameOfLifeConsole
             return
                 indexesAsPoints.Where(point => char.ToLower(input[point.X][point.Y]) == 'x').ToList();
         }
-        
-        public static Grid ConvertToGrid(List<string> input)
+
+        public static List<string> ConvertFileToInput(string path)
+        {
+            FilePathValidator.CheckFileExists(path);
+            FilePathValidator.CheckFileExtension(path);
+            return File.ReadLines(path).ToList();
+        }
+
+        public static Grid ConvertInputToGrid(List<string> input)
         {
             InputValidator.Validate(input);
             return new Grid(input.Count, input[0].Length, GetLiveCells(input));
         }
+        
     }
 }

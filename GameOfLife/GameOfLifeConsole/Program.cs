@@ -11,7 +11,7 @@ namespace GameOfLife.GameOfLifeConsole
         {
             var methodOfInput = UserInterface.AskForMethodOfInput().ToUpper();
             var input = InputValidator.GetValidInput(methodOfInput);
-            var grid = StringInput.ConvertToGrid(input);
+            var grid = InputConverter.ConvertInputToGrid(input);
             var world = new World(grid);
             new Game(world).RunGenerations();
         }

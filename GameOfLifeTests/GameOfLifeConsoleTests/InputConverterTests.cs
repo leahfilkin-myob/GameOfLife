@@ -7,7 +7,7 @@ using Xunit;
 
 namespace GameOfLifeTests.GameOfLifeConsoleTests
 {
-    public class StringInputTests
+    public class InputConverterTests
     {
         [Fact]
         public void GetsLiveCellsFromInput()
@@ -32,7 +32,7 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
                 new Point(3,3)
             };
 
-            var liveCellCoords = StringInput.GetLiveCells(input);
+            var liveCellCoords = InputConverter.GetLiveCells(input);
             
             Assert.Equal(expectedLiveCellCoords, liveCellCoords);
         }
@@ -59,9 +59,22 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
                 new Point(3, 2),
                 new Point(3, 3)
             });
-            var grid = StringInput.ConvertToGrid(input);
+            var grid = InputConverter.ConvertInputToGrid(input);
             
             Assert.Equal(expectedGrid.Cells, grid.Cells);
+        }
+        
+        [Fact]
+        public void ReadInputFileIntoStrings()
+        {
+            var expectedResult = new List<string>
+            {
+                "...x.",
+                "..x.x",
+                "..xxx",
+                ".xxx."
+            };
+            Assert.Equal(expectedResult, InputConverter.ConvertFileToInput("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt"));
         }
         
     }
