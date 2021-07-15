@@ -14,7 +14,7 @@ namespace GameOfLifeTests
         public void ThrowErrorIfInputIsIncorrect(string file)
         {
             var input = UserInterface.GetFileInput(
-                "/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLife/GameOfLifeTests/TestInputFiles/" + file);
+                "/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLifeTests/TestInputFiles/" + file);
 
             Assert.Throws<ArgumentException>(() => InputValidator.Validate(input));
         }
