@@ -19,7 +19,7 @@ namespace GameOfLife.GameOfLifeConsole
             return input;
         }
 
-        private static string AskForPath()
+        private static string GetPath()
         {
             Console.WriteLine("Please enter the path where you've kept your starting field:");
             return Console.ReadLine();
@@ -31,21 +31,10 @@ namespace GameOfLife.GameOfLifeConsole
             return Console.ReadLine();
         }
         
-        public static List<string> GetFileInput()
+        public static List<string> GetFileInput(string path)
         {
-            var path = AskForPath();
-            var input = new List<string>();
-            try
-            {
-                FilePathValidator.CheckFileExists(path);
-                input = File.ReadLines(path).ToList();
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine(e.Message);
-                GetFileInput();
-            }
-            return input;
+            FilePathValidator.CheckFileExists(path);
+            return File.ReadLines(path).ToList();
         }
 
         public static List<string> HandleInput(string methodOfInput)
@@ -56,7 +45,8 @@ namespace GameOfLife.GameOfLifeConsole
                     return GetConsoleInput();
                 case "F":
                 {
-                    return GetFileInput();
+                    var path = GetPath();
+                    return GetFileInput(path);
                 }
             }
             throw new InvalidOperationException("You can only enter F for file or C for console for your method of input");

@@ -10,7 +10,7 @@ namespace GameOfLife.GameOfLifeConsole
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException($"The file at {path} does not exist. Please try again.");
-            }
+            } 
         }
 
         public static void CheckFileExtension(string path)
