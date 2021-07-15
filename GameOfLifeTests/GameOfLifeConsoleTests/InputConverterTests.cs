@@ -32,7 +32,7 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
                 new Point(3,3)
             };
 
-            var liveCellCoords = InputConverter.GetLiveCells(input);
+            var liveCellCoords = InputConverter.ConvertXCharactersToLiveCellPoints(input);
             
             Assert.Equal(expectedLiveCellCoords, liveCellCoords);
         }

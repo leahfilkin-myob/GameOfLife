@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace GameOfLife.GameOfLifeConsole
+﻿namespace GameOfLife.GameOfLifeConsole
 {
     class Program
     {

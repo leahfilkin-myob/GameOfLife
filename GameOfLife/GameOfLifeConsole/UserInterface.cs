@@ -7,7 +7,7 @@ namespace GameOfLife.GameOfLifeConsole
 {
     public static class UserInterface
     {
-        public static List<string> GetConsoleInput()
+        private static List<string> GetConsoleInput()
         {
             Console.WriteLine("Please enter your grid. Enter F on a new line to finish:");
             string line;
@@ -19,7 +19,7 @@ namespace GameOfLife.GameOfLifeConsole
             return input;
         }
 
-        public static string GetValidPath()
+        private static string GetValidPath()
         {
             Console.WriteLine("Please enter the path where you've kept your starting field:");
             return Console.ReadLine();

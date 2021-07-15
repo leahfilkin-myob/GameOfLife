@@ -39,7 +39,7 @@ namespace GameOfLife
                         .Select(coords => Cells[coords.Line][coords.Column]).ToList();
             }
 
-            private int CalculateWrapAroundIndexForDimension(int i, int dimensionSize)
+            private static int CalculateWrapAroundIndexForDimension(int i, int dimensionSize)
             {
                 return (i + dimensionSize) % dimensionSize;
             }

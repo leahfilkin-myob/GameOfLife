@@ -40,7 +40,7 @@ namespace GameOfLife.GameOfLifeConsole
 
         public static List<string> GetValidInput(string methodOfInput)
         {
-            var input = new List<string>();
+            List<string> input;
             while (true)
             {
                 try

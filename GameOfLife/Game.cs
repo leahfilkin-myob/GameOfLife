@@ -15,7 +15,7 @@ namespace GameOfLife
         
         public void RunGenerations()
         {
-            int milliseconds = 100;
+            const int milliseconds = 100;
             while (true)
             {
                 Thread.Sleep(milliseconds);

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +7,7 @@ namespace GameOfLife.GameOfLifeConsole
     public static class InputConverter
     {
 
-        public static List<Point> GetLiveCells(List<string> input)
+        public static List<Point> ConvertXCharactersToLiveCellPoints(List<string> input)
         {
             var indexesAsPoints = input.SelectMany((row, i) => row
                 .Select((square, j) => new Point(i, j)));
@@ -26,7 +25,7 @@ namespace GameOfLife.GameOfLifeConsole
         public static Grid ConvertInputToGrid(List<string> input)
         {
             InputValidator.Validate(input);
-            return new Grid(input.Count, input[0].Length, GetLiveCells(input));
+            return new Grid(input.Count, input[0].Length, ConvertXCharactersToLiveCellPoints(input));
         }
         
     }
