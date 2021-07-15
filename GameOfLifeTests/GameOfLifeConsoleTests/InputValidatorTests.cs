@@ -1,9 +1,8 @@
 using System;
-using GameOfLife;
 using GameOfLife.GameOfLifeConsole;
 using Xunit;
 
-namespace GameOfLifeTests
+namespace GameOfLifeTests.GameOfLifeConsoleTests
 {
     public class InputValidatorTests
     {
