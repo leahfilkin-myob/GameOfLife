@@ -21,7 +21,7 @@ namespace GameOfLife
             return GetNumberOfAdjacentLiveCells(x, y) < 2 || GetNumberOfAdjacentLiveCells(x, y) > 3;
         }
 
-        public Cell GetCellsFate(int x, int y)
+        private Cell GetCellsFate(int x, int y)
         {
             if (CellShouldDie(x, y))
             {

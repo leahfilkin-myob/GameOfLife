@@ -14,10 +14,10 @@ namespace GameOfLifeTests
             var world = new World(
                 new Grid(10, 10, scenariosThatCauseDeathData.LiveCells));
 
-            var actualCellChange = world.GetCellsFate(scenariosThatCauseDeathData.XCoordToUpdate,
-                scenariosThatCauseDeathData.YCoordToUpdate);
+            world.RunOneGeneration();
 
-            Assert.Equal(scenariosThatCauseDeathData.UpdatedCellStatus, actualCellChange);
+            Assert.Equal(scenariosThatCauseDeathData.UpdatedCellStatus, 
+                world.Grid.Cells[scenariosThatCauseDeathData.XCoordToUpdate][scenariosThatCauseDeathData.YCoordToUpdate]);
         }
 
         [Theory]
@@ -27,10 +27,10 @@ namespace GameOfLifeTests
             var world = new World(
                 new Grid(10, 10, scenariosThatKeepCellAliveData.LiveCells));
 
-            var actualCellChange = world.GetCellsFate(scenariosThatKeepCellAliveData.XCoordToUpdate,
-                scenariosThatKeepCellAliveData.YCoordToUpdate);
+            world.RunOneGeneration();
 
-            Assert.Equal(scenariosThatKeepCellAliveData.UpdatedCellStatus, actualCellChange);
+            Assert.Equal(scenariosThatKeepCellAliveData.UpdatedCellStatus, 
+                world.Grid.Cells[scenariosThatKeepCellAliveData.XCoordToUpdate][scenariosThatKeepCellAliveData.YCoordToUpdate]);
         }
 
         [Fact]
@@ -44,9 +44,9 @@ namespace GameOfLifeTests
                     new Point(6,5)
                 }));
             
-            var actualCellChange = world.GetCellsFate(5, 5);
+            world.RunOneGeneration();
             
-            Assert.Equal(Cell.Alive, actualCellChange);
+            Assert.Equal(Cell.Alive, world.Grid.Cells[5][5]);
 
         }
 
