@@ -19,10 +19,13 @@ namespace GameOfLife.GameOfLifeConsole
             return input;
         }
 
-        private static string GetPath()
+        private static string GetValidPath()
         {
             Console.WriteLine("Please enter the path where you've kept your starting field:");
-            return Console.ReadLine();
+            var path = Console.ReadLine();
+            FilePathValidator.CheckFileExists(path);
+            FilePathValidator.CheckFileExtension(path);
+            return path;
         }
 
         public static string AskForMethodOfInput()
@@ -44,9 +47,7 @@ namespace GameOfLife.GameOfLifeConsole
                     return GetConsoleInput();
                 case "F":
                 {
-                    var path = GetPath();
-                    FilePathValidator.CheckFileExists(path);
-                    FilePathValidator.CheckFileExtension(path);
+                    var path = GetValidPath();
                     return GetFileInput(path);
                 }
             }
