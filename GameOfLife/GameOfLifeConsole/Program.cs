@@ -8,12 +8,13 @@ namespace GameOfLife.GameOfLifeConsole
     {
         static void Main(string[] args)
         {
-            var methodOfInput = UserInterface.AskForMethodOfInput().ToUpper();
+            var userMethodOfInput = UserInterface.GetMethodOfInput().ToUpper();
             List<string> input;
             while (true)
             {
                 try
                 {
+                    var methodOfInput = InputConverter.ConvertUsersInputMethodChoiceToMethodType(userMethodOfInput); //write a test for this
                     input = UserInterface.HandleInput(methodOfInput);
                     InputValidator.Validate(input);
                     break;
@@ -29,7 +30,7 @@ namespace GameOfLife.GameOfLifeConsole
                 catch (InvalidOperationException ie)
                 {
                     Console.WriteLine(ie.Message);
-                    methodOfInput = UserInterface.AskForMethodOfInput().ToUpper();
+                    userMethodOfInput = UserInterface.GetMethodOfInput().ToUpper();
                 }
             }
             var grid = InputConverter.ConvertInputToGrid(input);
