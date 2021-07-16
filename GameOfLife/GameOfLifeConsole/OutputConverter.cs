@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace GameOfLife.GameOfLifeConsole
 {
-    public static class StringOutput
+    public static class OutputConverter
     {
         public static string ConvertToOutput(Grid grid)
         {

@@ -20,7 +20,7 @@ namespace GameOfLife
             {
                 Thread.Sleep(milliseconds);
                 Console.Clear();
-                Console.WriteLine(StringOutput.ConvertToOutput(_world.Grid));
+                Console.WriteLine(OutputConverter.ConvertToOutput(_world.Grid));
                 _world.RunOneGeneration();
             }
         }
