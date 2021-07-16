@@ -21,13 +21,12 @@ namespace GameOfLife.GameOfLifeConsole
             return new Grid(input.Count, input[0].Length, ConvertXCharactersToLiveCellPoints(input));
         }
 
-        public static Method ConvertUsersInputMethodChoiceToMethodType(string userMethodOfInput)
+        public static InputMethod ConvertUsersInputMethodChoiceToInputMethodType(string userMethodOfInput)
         {
             return userMethodOfInput switch
             {
-                "C" => Method.Console,
-                "F" => Method.File,
-                _ => throw new InvalidOperationException("You can only enter F for file or C for console for your method of input")           
+                "C" => InputMethod.Console,
+                "F" => InputMethod.File,
             };
         }
     }

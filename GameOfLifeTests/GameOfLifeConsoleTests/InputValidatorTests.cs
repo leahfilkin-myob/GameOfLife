@@ -17,5 +17,12 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
 
             Assert.Throws<ArgumentException>(() => InputValidator.Validate(input));
         }
+
+        [Fact]
+        public void ThrowErrorIfInputMethodChoiceIsNotOneOfTheInputMethodTypes()
+        {
+            Assert.Throws<InvalidOperationException>( () =>InputValidator.Validate("X"));
+            
+        }
     }
 }

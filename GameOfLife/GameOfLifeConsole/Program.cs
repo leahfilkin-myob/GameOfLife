@@ -8,14 +8,28 @@ namespace GameOfLife.GameOfLifeConsole
     {
         static void Main(string[] args)
         {
-            var userMethodOfInput = UserInterface.GetMethodOfInput().ToUpper();
+            string userInputChoice;
+            while (true)
+            {
+                try
+                {
+                    userInputChoice = UserInterface.GetMethodOfInput().ToUpper();
+                    InputValidator.Validate(userInputChoice); 
+                    break;
+                }
+                catch (InvalidOperationException ie)
+                {
+                    Console.WriteLine(ie.Message);
+                }
+            }
+            var inputMethod = InputConverter.ConvertUsersInputMethodChoiceToInputMethodType(userInputChoice);
+
             List<string> input;
             while (true)
             {
                 try
                 {
-                    var methodOfInput = InputConverter.ConvertUsersInputMethodChoiceToMethodType(userMethodOfInput); //write a test for this
-                    input = UserInterface.HandleInput(methodOfInput);
+                    input = UserInterface.HandleInput(inputMethod);
                     InputValidator.Validate(input);
                     break;
                 }
@@ -26,11 +40,6 @@ namespace GameOfLife.GameOfLifeConsole
                 catch (FileNotFoundException fe)
                 {
                     Console.WriteLine(fe.Message);
-                }
-                catch (InvalidOperationException ie)
-                {
-                    Console.WriteLine(ie.Message);
-                    userMethodOfInput = UserInterface.GetMethodOfInput().ToUpper();
                 }
             }
             var grid = InputConverter.ConvertInputToGrid(input);

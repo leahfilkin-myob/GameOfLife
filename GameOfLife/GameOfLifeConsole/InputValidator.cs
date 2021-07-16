@@ -13,6 +13,15 @@ namespace GameOfLife.GameOfLifeConsole
             CheckAllRowsHaveSameAmountOfColumns(input);
             CheckThereIsAtLeastOneActiveCellToBeginWith(input);
         }
+        
+        public static void Validate(string userMethodOfInput)
+        {
+            if (userMethodOfInput != "C" && userMethodOfInput != "F")
+            {
+                throw new InvalidOperationException(
+                    "You can only enter F for file or C for console for your method of input");
+            }
+        }
         private static void CheckThereIsAtLeastOneActiveCellToBeginWith(List<string> input)
         {
             if (input.All(row => row.All(character => char.ToLower(character) != 'x')))

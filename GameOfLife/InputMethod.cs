@@ -1,6 +1,6 @@
 namespace GameOfLife
 {
-    public enum Method
+    public enum InputMethod
     {
         Console, 
         File

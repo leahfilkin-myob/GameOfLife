@@ -36,12 +36,12 @@ namespace GameOfLife.GameOfLifeConsole
             return File.ReadLines(path).ToList();
         }
         
-        public static List<string> HandleInput(Method method)
+        public static List<string> HandleInput(InputMethod inputMethod)
         {
-            return method switch
+            return inputMethod switch
             {
-                Method.Console => GetConsoleInput(),
-                Method.File => GetFileInput(),
+                InputMethod.Console => GetConsoleInput(),
+                InputMethod.File => GetFileInput(),
             };
         }
 

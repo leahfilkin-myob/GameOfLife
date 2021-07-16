@@ -64,5 +64,13 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
             Assert.Equal(expectedGrid.Cells, grid.Cells);
         }
 
+        [Fact]
+        public static void ConvertsUsersInputMethodChoiceToInputMethodType()
+        {
+            var convertedInputMethod = InputConverter.ConvertUsersInputMethodChoiceToInputMethodType("C");
+            
+            Assert.Equal(InputMethod.Console, convertedInputMethod);
+        }       
+
     }
 }
