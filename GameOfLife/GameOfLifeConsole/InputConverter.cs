@@ -15,16 +15,8 @@ namespace GameOfLife.GameOfLifeConsole
                 indexesAsPoints.Where(point => char.ToLower(input[point.X][point.Y]) == 'x').ToList();
         }
 
-        public static List<string> ConvertFileToInput(string path)
-        {
-            FilePathValidator.CheckFileExists(path);
-            FilePathValidator.CheckFileExtension(path);
-            return File.ReadLines(path).ToList();
-        }
-
         public static Grid ConvertInputToGrid(List<string> input)
         {
-            InputValidator.Validate(input);
             return new Grid(input.Count, input[0].Length, ConvertXCharactersToLiveCellPoints(input));
         }
         

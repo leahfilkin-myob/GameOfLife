@@ -4,7 +4,7 @@ namespace GameOfLife
 {
     public class World
     {
-        public Grid Grid;
+        public Grid Grid { get; private set; }
         public World(Grid grid)
         {
             Grid = grid;

@@ -63,19 +63,6 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
             
             Assert.Equal(expectedGrid.Cells, grid.Cells);
         }
-        
-        [Fact]
-        public void ReadInputFileIntoStrings()
-        {
-            var expectedResult = new List<string>
-            {
-                "...x.",
-                "..x.x",
-                "..xxx",
-                ".xxx."
-            };
-            Assert.Equal(expectedResult, InputConverter.ConvertFileToInput("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLifeTests/TestInputFiles/input.txt"));
-        }
-        
+
     }
 }

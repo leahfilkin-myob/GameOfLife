@@ -18,7 +18,7 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
         [Fact]
         public void ThrowErrorIfFileIsNotTxt()
         {
-            Assert.Throws<ArgumentException>(() => FilePathValidator.CheckFileExtension("/input.json"));
+            Assert.Throws<ArgumentException>(() => FilePathValidator.Validate("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLifeTests/TestInputFiles/input.json"));
         }
     }
 }

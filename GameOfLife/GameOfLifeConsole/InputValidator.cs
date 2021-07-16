@@ -13,7 +13,6 @@ namespace GameOfLife.GameOfLifeConsole
             CheckAllRowsHaveSameAmountOfColumns(input);
             CheckThereIsAtLeastOneActiveCellToBeginWith(input);
         }
-
         private static void CheckThereIsAtLeastOneActiveCellToBeginWith(List<string> input)
         {
             if (input.All(row => row.All(character => char.ToLower(character) != 'x')))
@@ -37,35 +36,5 @@ namespace GameOfLife.GameOfLifeConsole
                 throw new ArgumentException("You can only use x and . characters in your input. Please enter a new input.");
             }        
         }
-
-        public static List<string> GetValidInput(string methodOfInput)
-        {
-            List<string> input;
-            while (true)
-            {
-                try
-                {
-                    input = UserInterface.HandleInput(methodOfInput);
-                    Validate(input);
-                    break;
-                }
-                catch (ArgumentException ae)
-                {
-                    Console.WriteLine(ae.Message);
-                }
-                catch (FileNotFoundException fe)
-                {
-                    Console.WriteLine(fe.Message);
-                }
-                catch (InvalidOperationException ie)
-                {
-                    Console.WriteLine(ie.Message);
-                    methodOfInput = UserInterface.AskForMethodOfInput().ToUpper();
-                }
-            }
-
-            return input;
-        }
-
     }
 }

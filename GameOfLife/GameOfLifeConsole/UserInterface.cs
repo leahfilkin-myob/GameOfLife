@@ -30,6 +30,11 @@ namespace GameOfLife.GameOfLifeConsole
             Console.Write("Please enter your method of input: enter F for file and C for console: ");
             return Console.ReadLine();
         }
+
+        public static List<string> ReadInputFromFile(string path)
+        {
+            return File.ReadLines(path).ToList();
+        }
         
         public static List<string> HandleInput(string methodOfInput)
         {
@@ -40,7 +45,8 @@ namespace GameOfLife.GameOfLifeConsole
                 case "F":
                 {
                     var path = GetValidPath();
-                    return InputConverter.ConvertFileToInput(path);
+                    FilePathValidator.Validate(path);
+                    return ReadInputFromFile(path);
                 }
             }
             throw new InvalidOperationException("You can only enter F for file or C for console for your method of input");

@@ -7,5 +7,6 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
 {
     public class UserInterfaceTests
     {
+
     }
 }
