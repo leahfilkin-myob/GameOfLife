@@ -9,7 +9,7 @@ namespace GameOfLife.GameOfLifeConsole
     {
         private static List<string> GetConsoleInput()
         {
-            Console.WriteLine("Please enter your grid. Enter F on a new line to finish:");
+            Console.WriteLine("Please enter your grid. Enter D (for Done) on a new line to finish:");
             string line;
             var input = new List<string>();
             while ((line = Console.ReadLine()) != null && line != "" && line.ToUpper() != "F") 
