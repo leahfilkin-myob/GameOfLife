@@ -7,22 +7,49 @@ namespace GameOfLife.GameOfLifeConsole
 {
     public static class InputValidator
     {
+
+        private static List<Point> ConvertXCharactersToLiveCellPoints(List<string> input)
+        {
+            var indexesAsPoints = input.SelectMany((row, i) => row
+                .Select((square, j) => new Point(i, j)));
+            return
+                indexesAsPoints.Where(point => char.ToLower(input[point.X][point.Y]) == 'x').ToList();
+        }
+
+        public static Grid ConvertInputToGrid(List<string> input)
+        {
+            Validate(input);
+            return new Grid(input.Count, input[0].Length, ConvertXCharactersToLiveCellPoints(input));
+        }
+
+        public static InputMethod ValidateThatInputMethodChoiceIsTypedCorrectly(string userMethodOfInput)
+        {
+            return userMethodOfInput switch
+            {
+                "C" => InputMethod.Console,
+                "F" => InputMethod.File,
+                _ => throw new ArgumentOutOfRangeException(nameof(userMethodOfInput), "You have incorrectly typed one of the input options.")
+            };
+        }
+
+        public static IInput ValidateThatInputMethodTypeIsSupported(InputMethod inputMethod)
+        {
+            return inputMethod switch
+            {
+                InputMethod.Console => new ConsoleInput(),
+                InputMethod.File => new FileInput(),
+                _ => throw new ArgumentOutOfRangeException(nameof(inputMethod), "You have selected an input type that's not supported.")
+            };
+        }
+
         public static void Validate(List<string> input)
         {
             CheckOnlyPeriodsAndXCharactersAreUsed(input);
             CheckAllRowsHaveSameAmountOfColumns(input);
-            CheckThereIsAtLeastOneActiveCellToBeginWith(input);
+            CheckAtLeastOneLiveCellExists(input);
         }
-        
-        public static void Validate(string userMethodOfInput)
-        {
-            if (userMethodOfInput != "C" && userMethodOfInput != "F")
-            {
-                throw new InvalidOperationException(
-                    "You can only enter F for file or C for console for your method of input");
-            }
-        }
-        private static void CheckThereIsAtLeastOneActiveCellToBeginWith(List<string> input)
+
+        private static void CheckAtLeastOneLiveCellExists(List<string> input)
         {
             if (input.All(row => row.All(character => char.ToLower(character) != 'x')))
             {

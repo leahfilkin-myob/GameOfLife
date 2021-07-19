@@ -8,29 +8,29 @@ namespace GameOfLife.GameOfLifeConsole
     {
         static void Main(string[] args)
         {
-            string userInputChoice;
+            IInput supportedInputMethod;
             while (true)
             {
                 try
                 {
-                    userInputChoice = UserInterface.GetMethodOfInput().ToUpper();
-                    InputValidator.Validate(userInputChoice); 
+                    var inputChoice = UserInterface.GetMethodOfInput().ToUpper();
+                    var inputMethod = InputValidator.ValidateThatInputMethodChoiceIsTypedCorrectly(inputChoice);
+                    supportedInputMethod = InputValidator.ValidateThatInputMethodTypeIsSupported(inputMethod);
                     break;
                 }
-                catch (InvalidOperationException ie)
+                catch (ArgumentOutOfRangeException ie)
                 {
                     Console.WriteLine(ie.Message);
                 }
             }
-            var inputMethod = InputConverter.ConvertUsersInputMethodChoiceToInputMethodType(userInputChoice);
 
-            List<string> input;
+            Grid grid;
             while (true)
             {
                 try
                 {
-                    input = UserInterface.HandleInput(inputMethod);
-                    InputValidator.Validate(input);
+                    var input = supportedInputMethod.GetInput();
+                    grid = InputValidator.ConvertInputToGrid(input);
                     break;
                 }
                 catch (ArgumentException ae)
@@ -42,7 +42,6 @@ namespace GameOfLife.GameOfLifeConsole
                     Console.WriteLine(fe.Message);
                 }
             }
-            var grid = InputConverter.ConvertInputToGrid(input);
             var world = new World(grid);
             new Game(world).RunGenerations();
         }
