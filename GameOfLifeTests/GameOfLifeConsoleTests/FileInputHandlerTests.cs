@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using GameOfLife.GameOfLifeConsole;
+using GameOfLife.GameOfLifeConsole.InputHandlers;
 using Xunit;
 
 namespace GameOfLifeTests.GameOfLifeConsoleTests

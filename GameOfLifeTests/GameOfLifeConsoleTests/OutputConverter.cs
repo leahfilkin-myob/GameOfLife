@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GameOfLife;
 using GameOfLife.GameOfLifeConsole;
+using GameOfLife.GameOfLifeLogic;
 using Xunit;
 
 namespace GameOfLifeTests.GameOfLifeConsoleTests

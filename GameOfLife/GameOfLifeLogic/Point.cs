@@ -1,6 +1,6 @@
 using System;
 
-namespace GameOfLife
+namespace GameOfLife.GameOfLifeLogic
 {
     public class Point
     {

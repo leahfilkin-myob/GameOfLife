@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 
-namespace GameOfLife
+namespace GameOfLife.GameOfLifeLogic
 {
     public class Grid
     {

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using GameOfLife;
+using GameOfLife.GameOfLifeLogic;
 using Xunit;
 
-namespace GameOfLifeTests
+namespace GameOfLifeTests.GameOfLifeLogicTests
 {
     public class WorldTests
     {

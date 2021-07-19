@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
-using GameOfLife.GameOfLifeConsole;
+using GameOfLife.GameOfLifeLogic;
 
-namespace GameOfLife
+namespace GameOfLife.GameOfLifeConsole
 {
     public class Game
     {

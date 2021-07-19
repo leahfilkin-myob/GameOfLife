@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using GameOfLife.GameOfLifeConsole.InputHandlers;
+using GameOfLife.GameOfLifeLogic;
 
 namespace GameOfLife.GameOfLifeConsole
 {

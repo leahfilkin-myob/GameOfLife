@@ -1,4 +1,4 @@
-namespace GameOfLife
+namespace GameOfLife.GameOfLifeLogic
 {
     public enum Cell
     {

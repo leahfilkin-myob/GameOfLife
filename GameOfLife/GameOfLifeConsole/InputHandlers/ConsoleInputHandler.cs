@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameOfLife.GameOfLifeConsole
+namespace GameOfLife.GameOfLifeConsole.InputHandlers
 {
     public class ConsoleInputHandler : IInputHandler
     {

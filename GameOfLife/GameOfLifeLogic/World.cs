@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace GameOfLife
+namespace GameOfLife.GameOfLifeLogic
 {
     public class World
     {

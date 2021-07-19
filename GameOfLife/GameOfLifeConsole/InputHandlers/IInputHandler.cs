@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GameOfLife.GameOfLifeConsole
+namespace GameOfLife.GameOfLifeConsole.InputHandlers
 {
     public interface IInputHandler
     {

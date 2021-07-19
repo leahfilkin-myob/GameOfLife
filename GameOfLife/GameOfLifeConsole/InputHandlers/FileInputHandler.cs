@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace GameOfLife.GameOfLifeConsole
+namespace GameOfLife.GameOfLifeConsole.InputHandlers
 {
     public class FileInputHandler : IInputHandler
     {

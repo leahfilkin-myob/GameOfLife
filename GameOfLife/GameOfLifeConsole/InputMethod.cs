@@ -1,4 +1,4 @@
-namespace GameOfLife
+namespace GameOfLife.GameOfLifeConsole
 {
     public enum InputMethod
     {
