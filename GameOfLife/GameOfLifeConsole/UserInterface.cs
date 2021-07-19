@@ -13,13 +13,10 @@ namespace GameOfLife.GameOfLifeConsole
             return Console.ReadLine();
         }
 
-        public static List<string> HandleInput(InputMethod inputMethod)
+        internal static string GetPath()
         {
-            return inputMethod switch
-            {
-                InputMethod.Console => new ConsoleInput().GetInput(),
-                InputMethod.File => new FileInput().GetInput()
-            };
+            Console.WriteLine("Please enter the path where you've kept your starting field:");
+            return Console.ReadLine();
         }
     }
 }

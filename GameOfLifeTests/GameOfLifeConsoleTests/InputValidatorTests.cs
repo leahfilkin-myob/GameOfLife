@@ -50,13 +50,24 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
             Assert.Equal(expectedGrid.Cells, actualGrid.Cells);
         }
         
-        [Fact]
-        public static void ConvertsUsersInputMethodChoiceToInputMethodType()
+        [Theory]
+        [InlineData("C", InputMethod.Console)]
+        [InlineData("F", InputMethod.File)]
+        public static void ConvertsUsersInputMethodChoiceToInputMethodType(string inputString, InputMethod convertedMethod)
         {
-            var convertedInputMethod = InputValidator.ValidateThatInputMethodChoiceIsTypedCorrectly("C");
+            var convertedInputMethod = InputValidator.ValidateThatInputMethodChoiceIsTypedCorrectly(inputString);
             
-            Assert.Equal(InputMethod.Console, convertedInputMethod);
-        }    
+            Assert.Equal(convertedMethod, convertedInputMethod);
+        }
+
+        [Theory]
+        [InlineData(InputMethod.Console, typeof(ConsoleInputHandler))]
+        [InlineData(InputMethod.File, typeof(FileInputHandler))]
+        public static void ConvertsInputMethodTypeToInstanceOfInputHandler(InputMethod inputMethod, object inputHandlerType)
+        {
+            var inputHandler = InputValidator.ValidateThatInputMethodTypeIsSupported(inputMethod);
+            Assert.Equal(inputHandlerType, inputHandler.GetType());
+        }
 
         public class IncorrectInputData
         {

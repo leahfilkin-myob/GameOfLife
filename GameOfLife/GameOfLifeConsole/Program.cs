@@ -8,7 +8,7 @@ namespace GameOfLife.GameOfLifeConsole
     {
         static void Main(string[] args)
         {
-            IInput supportedInputMethod;
+            IInputHandler supportedInputMethod;
             while (true)
             {
                 try

@@ -32,12 +32,12 @@ namespace GameOfLife.GameOfLifeConsole
             };
         }
 
-        public static IInput ValidateThatInputMethodTypeIsSupported(InputMethod inputMethod)
+        public static IInputHandler ValidateThatInputMethodTypeIsSupported(InputMethod inputMethod)
         {
             return inputMethod switch
             {
-                InputMethod.Console => new ConsoleInput(),
-                InputMethod.File => new FileInput(),
+                InputMethod.Console => new ConsoleInputHandler(),
+                InputMethod.File => new FileInputHandler(),
                 _ => throw new ArgumentOutOfRangeException(nameof(inputMethod), "You have selected an input type that's not supported.")
             };
         }

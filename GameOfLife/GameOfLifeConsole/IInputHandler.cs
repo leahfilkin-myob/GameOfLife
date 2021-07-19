@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace GameOfLife.GameOfLifeConsole
 {
-    public interface IInput
+    public interface IInputHandler
     {
         public List<string> GetInput();
     }
