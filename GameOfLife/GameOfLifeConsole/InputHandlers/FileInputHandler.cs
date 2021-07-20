@@ -9,7 +9,7 @@ namespace GameOfLife.GameOfLifeConsole.InputHandlers
     {
         public List<string> GetInput()
         {
-            var path = UserInterface.GetPath();
+            var path = GetPath();
             ValidateFileInPath(path);
             return ReadInputFromFile(path);
         }
@@ -17,6 +17,12 @@ namespace GameOfLife.GameOfLifeConsole.InputHandlers
         private static List<string> ReadInputFromFile(string path)
         {
             return File.ReadLines(path).ToList();
+        }
+        
+        private static string GetPath()
+        {
+            Console.WriteLine("Please enter the path where you've kept your starting field:");
+            return Console.ReadLine();
         }
         
         
