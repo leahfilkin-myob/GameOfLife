@@ -20,9 +20,10 @@ namespace GameOfLife.GameOfLifeConsole
             {
                 Thread.Sleep(milliseconds);
                 Console.Clear();
-                Console.WriteLine(OutputConverter.ConvertToOutput(_world.Grid));
+                Console.WriteLine(Output.ConvertToOutput(_world.Grid));
                 _world.RunOneGeneration();
             }
+            // ReSharper disable once FunctionNeverReturns
         }
     }
 }

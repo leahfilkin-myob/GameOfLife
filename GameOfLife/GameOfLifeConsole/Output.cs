@@ -3,7 +3,7 @@ using GameOfLife.GameOfLifeLogic;
 
 namespace GameOfLife.GameOfLifeConsole
 {
-    public static class OutputConverter
+    public static class Output
     {
         public static string ConvertToOutput(Grid grid)
         {

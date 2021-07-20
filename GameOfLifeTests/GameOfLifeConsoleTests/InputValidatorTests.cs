@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using GameOfLife;
 using GameOfLife.GameOfLifeConsole;
 using GameOfLife.GameOfLifeConsole.InputHandlers;
 using GameOfLife.GameOfLifeLogic;
@@ -21,7 +20,7 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
         [Fact]
         public void ThrowErrorIfInputMethodChoiceIsNotOneOfTheInputMethodTypes()
         {
-            Assert.Throws<ArgumentOutOfRangeException>( () => InputValidator.ValidateThatInputMethodChoiceIsTypedCorrectly("X"));
+            Assert.Throws<ArgumentOutOfRangeException>( () => InputValidator.ParseInputChoiceTypeToInputHandler("X"));
         }
         
         [Fact]
@@ -47,27 +46,17 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
                 new Point(3,3)
             });
 
-            var actualGrid = InputValidator.ConvertInputToGrid(input);
+            var actualGrid = InputValidator.ParseInputToGrid(input);
             
             Assert.Equal(expectedGrid.Cells, actualGrid.Cells);
         }
-        
-        [Theory]
-        [InlineData("C", InputMethod.Console)]
-        [InlineData("F", InputMethod.File)]
-        public static void ConvertsUsersInputMethodChoiceToInputMethodType(string inputString, InputMethod convertedMethod)
-        {
-            var convertedInputMethod = InputValidator.ValidateThatInputMethodChoiceIsTypedCorrectly(inputString);
-            
-            Assert.Equal(convertedMethod, convertedInputMethod);
-        }
 
         [Theory]
-        [InlineData(InputMethod.Console, typeof(ConsoleInputHandler))]
-        [InlineData(InputMethod.File, typeof(FileInputHandler))]
-        public static void ConvertsInputMethodTypeToInstanceOfInputHandler(InputMethod inputMethod, object inputHandlerType)
+        [InlineData("C", typeof(ConsoleInputHandler))]
+        [InlineData("F", typeof(FileInputHandler))]
+        public static void ConvertsInputMethodTypeToInstanceOfInputHandler(string inputMethod, object inputHandlerType)
         {
-            var inputHandler = InputValidator.ValidateThatInputMethodTypeIsSupported(inputMethod);
+            var inputHandler = InputValidator.ParseInputChoiceTypeToInputHandler(inputMethod);
             Assert.Equal(inputHandlerType, inputHandler.GetType());
         }
 

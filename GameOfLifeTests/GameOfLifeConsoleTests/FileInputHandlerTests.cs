@@ -12,7 +12,7 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
         public void ThrowErrorWithCustomErrorMessageIfFileDoesNotExist()
         {
             var exception = Assert.Throws<FileNotFoundException>(() => FileInputHandler.CheckFileExists("/Users/Leah.Filkin/input.txt"));
-            Assert.Equal($"The file at /Users/Leah.Filkin/input.txt does not exist. Please try again.", exception.Message);
+            Assert.Equal($"\nThe file at /Users/Leah.Filkin/input.txt does not exist. Please try again.", exception.Message);
         }
 
         [Fact]

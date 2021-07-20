@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using GameOfLife.GameOfLifeConsole.InputHandlers;
 using GameOfLife.GameOfLifeLogic;
@@ -18,29 +17,19 @@ namespace GameOfLife.GameOfLifeConsole
                 indexesAsPoints.Where(point => char.ToLower(input[point.X][point.Y]) == 'x').ToList();
         }
 
-        public static Grid ConvertInputToGrid(List<string> input)
+        public static Grid ParseInputToGrid(List<string> input)
         {
             Validate(input);
             return new Grid(input.Count, input[0].Length, ConvertXCharactersToLiveCellPoints(input));
         }
 
-        public static InputMethod ValidateThatInputMethodChoiceIsTypedCorrectly(string userMethodOfInput)
+        public static IInputHandler ParseInputChoiceTypeToInputHandler(string userMethodOfInput)
         {
             return userMethodOfInput switch
             {
-                "C" => InputMethod.Console,
-                "F" => InputMethod.File,
-                _ => throw new ArgumentOutOfRangeException(nameof(userMethodOfInput), "You have incorrectly typed one of the input options.")
-            };
-        }
-
-        public static IInputHandler ValidateThatInputMethodTypeIsSupported(InputMethod inputMethod)
-        {
-            return inputMethod switch
-            {
-                InputMethod.Console => new ConsoleInputHandler(),
-                InputMethod.File => new FileInputHandler(),
-                _ => throw new ArgumentOutOfRangeException(nameof(inputMethod), "You have selected an input type that's not supported.")
+                "C" => new ConsoleInputHandler(),
+                "F" => new FileInputHandler(),
+                _ => throw new ArgumentOutOfRangeException(nameof(userMethodOfInput), "\nYou have selected an input type that's not supported.")
             };
         }
 
@@ -55,7 +44,7 @@ namespace GameOfLife.GameOfLifeConsole
         {
             if (input.All(row => row.All(character => char.ToLower(character) != 'x')))
             {
-                throw new ArgumentException("Your grid should have at least one live cell for the initial state. Please enter a new input.");
+                throw new ArgumentException("\nYour grid should have at least one live cell for the initial state. Please enter a new input.");
             }
         }
 
@@ -63,7 +52,7 @@ namespace GameOfLife.GameOfLifeConsole
         {
             if (input.Any(row => row.Length != input[0].Length))
             {
-                throw new ArgumentException("Your grid should have the same width for all rows. Please enter a new input.");
+                throw new ArgumentException("\nYour grid should have the same width for all rows. Please enter a new input.");
             }
         }
 
@@ -71,7 +60,7 @@ namespace GameOfLife.GameOfLifeConsole
         {
             if (input.Any(row => row.Any(character => char.ToLower(character) != 'x' && character != '.')))
             {
-                throw new ArgumentException("You can only use x and . characters in your input. Please enter a new input.");
+                throw new ArgumentException("\nYou can only use x and . characters in your input. Please enter a new input.");
             }        
         }
     }

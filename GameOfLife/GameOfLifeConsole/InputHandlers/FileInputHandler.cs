@@ -30,21 +30,22 @@ namespace GameOfLife.GameOfLifeConsole.InputHandlers
         {
             if (!File.Exists(path))
             {
-                throw new FileNotFoundException($"The file at {path} does not exist. Please try again.");
+                throw new FileNotFoundException($"\nThe file at {path} does not exist. Please try again.");
             } 
         }
         
         private static void CheckFileExtension(string path)
         {
-            var indexOfExtension = path.Substring(path.LastIndexOf('/')).LastIndexOf('.');
-            if (indexOfExtension <= -1)
+            var file = path.Substring(path.LastIndexOf('/') + 1);
+            var extensionIndex = file.LastIndexOf('.');
+            if (extensionIndex <= -1)
             {
-                throw new ArgumentException("Please provide a path that contains a file with an extension");
+                throw new ArgumentException("\nPlease provide a path that contains a file with an extension");
             }
-            var extension = path.Substring(indexOfExtension);
+            var extension = file.Substring(file.LastIndexOf('.'));
             if (extension != ".txt")
             {
-                throw new ArgumentException("We currently only accept .txt files");
+                throw new ArgumentException("\nWe currently only accept .txt files");
             }
         }
     }

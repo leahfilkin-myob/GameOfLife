@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using GameOfLife.GameOfLifeConsole.InputHandlers;
 using GameOfLife.GameOfLifeLogic;
@@ -10,14 +9,13 @@ namespace GameOfLife.GameOfLifeConsole
     {
         static void Main(string[] args)
         {
-            IInputHandler supportedInputMethod;
+            IInputHandler inputHandler;
             while (true)
             {
                 try
                 {
                     var inputChoice = UserInterface.GetMethodOfInput().ToUpper();
-                    var inputMethod = InputValidator.ValidateThatInputMethodChoiceIsTypedCorrectly(inputChoice);
-                    supportedInputMethod = InputValidator.ValidateThatInputMethodTypeIsSupported(inputMethod);
+                    inputHandler = InputValidator.ParseInputChoiceTypeToInputHandler(inputChoice);
                     break;
                 }
                 catch (ArgumentOutOfRangeException ie)
@@ -31,8 +29,8 @@ namespace GameOfLife.GameOfLifeConsole
             {
                 try
                 {
-                    var input = supportedInputMethod.GetInput();
-                    grid = InputValidator.ConvertInputToGrid(input);
+                    var input = inputHandler.GetInput();
+                    grid = InputValidator.ParseInputToGrid(input);
                     break;
                 }
                 catch (ArgumentException ae)
@@ -44,8 +42,7 @@ namespace GameOfLife.GameOfLifeConsole
                     Console.WriteLine(fe.Message);
                 }
             }
-            var world = new World(grid);
-            new Game(world).RunGenerations();
+            new Game(new World(grid)).RunGenerations();
         }
     }
 }
