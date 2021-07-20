@@ -14,7 +14,7 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
         public void ThrowErrorIfInputIsIncorrect(IncorrectInputData incorrectInputData)
         {
 
-            Assert.Throws<ArgumentException>(() => InputValidator.Validate(incorrectInputData.Input));
+            Assert.Throws<ArgumentException>(() => InputValidator.ParseInputToGrid(incorrectInputData.Input));
         }
 
         [Fact]

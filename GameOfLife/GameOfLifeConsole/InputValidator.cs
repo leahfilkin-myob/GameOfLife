@@ -33,7 +33,7 @@ namespace GameOfLife.GameOfLifeConsole
             };
         }
 
-        public static void Validate(List<string> input)
+        private static void Validate(List<string> input)
         {
             CheckOnlyPeriodsAndXCharactersAreUsed(input);
             CheckAllRowsHaveSameAmountOfColumns(input);
