@@ -13,7 +13,7 @@ namespace GameOfLife.GameOfLifeConsole
             {
                 try
                 {
-                    var inputChoice = UserInterface.GetMethodOfInput().ToUpper();
+                    var inputChoice = IInputHandler.GetMethodOfInput().ToUpper();
                     return InputValidator.ParseInputChoiceTypeToInputHandler(inputChoice);
                 }
                 catch (ArgumentOutOfRangeException ie)
