@@ -15,11 +15,7 @@ namespace GameOfLife.GameOfLifeLogic
             var cellsToCheck = Grid.GetAdjacentCells(x, y);
             return cellsToCheck.Count(cell => cell == Cell.Alive);
         }
-
-        private bool CellShouldDie(int x, int y)
-        {
-            return GetNumberOfAdjacentLiveCells(x, y) < 2 || GetNumberOfAdjacentLiveCells(x, y) > 3;
-        }
+        
 
         private Cell GetCellsFate(int x, int y)
         {
@@ -32,6 +28,11 @@ namespace GameOfLife.GameOfLifeLogic
                 return Cell.Alive;
             }
             return Grid.Cells[x][y];
+        }
+        
+        private bool CellShouldDie(int x, int y)
+        {
+            return GetNumberOfAdjacentLiveCells(x, y) < 2 || GetNumberOfAdjacentLiveCells(x, y) > 3;
         }
 
         private bool CellShouldComeAlive(int x, int y)
