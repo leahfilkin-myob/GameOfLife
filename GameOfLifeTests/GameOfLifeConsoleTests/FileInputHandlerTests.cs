@@ -11,20 +11,21 @@ namespace GameOfLifeTests.GameOfLifeConsoleTests
         [Fact]
         public void ThrowErrorWithCustomErrorMessageIfFileDoesNotExist()
         {
-            var exception = Assert.Throws<FileNotFoundException>(() => FileInputHandler.CheckFileExists("/Users/Leah.Filkin/input.txt"));
-            Assert.Equal($"\nThe file at /Users/Leah.Filkin/input.txt does not exist. Please try again.", exception.Message);
+            var path = "/../../../inputThatDoesntExist.txt";
+            var exception = Assert.Throws<FileNotFoundException>(() => FileInputHandler.CheckFileExists(path));
+            Assert.Equal($"\nThe file at {Path.GetFullPath(path)} does not exist. Please try again.", exception.Message);
         }
 
         [Fact]
         public void ThrowErrorIfFileIsNotTxt()
         {
-            Assert.Throws<ArgumentException>(() => FileInputHandler.ValidateFileInPath("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLifeTests/TestInputFiles/input.json"));
+            Assert.Throws<ArgumentException>(() => FileInputHandler.ValidateFileInPath("../../../TestInputFiles/input.json"));
         }
 
         [Fact]
         public void ThrowErrorIfFileHasNoExtension()
         {
-            Assert.Throws<ArgumentException>(() => FileInputHandler.ValidateFileInPath("/Users/Leah.Filkin/Documents/MyProjects/GameOfLife/GameOfLifeTests/TestInputFiles/inputWithNoExtension"));
+            Assert.Throws<ArgumentException>(() => FileInputHandler.ValidateFileInPath("../../../TestInputFiles/inputWithNoExtension"));
         }
     }
 }

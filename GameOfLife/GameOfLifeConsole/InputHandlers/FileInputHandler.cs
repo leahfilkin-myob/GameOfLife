@@ -36,7 +36,7 @@ namespace GameOfLife.GameOfLifeConsole.InputHandlers
         {
             if (!File.Exists(path))
             {
-                throw new FileNotFoundException($"\nThe file at {path} does not exist. Please try again.");
+                throw new FileNotFoundException($"\nThe file at {Path.GetFullPath(path)} does not exist. Please try again.");
             } 
         }
         
