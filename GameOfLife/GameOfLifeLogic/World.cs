@@ -19,7 +19,6 @@ namespace GameOfLife.GameOfLifeLogic
         private bool CellShouldDie(int x, int y)
         {
             return GetNumberOfAdjacentLiveCells(x, y) < 2 || GetNumberOfAdjacentLiveCells(x, y) > 3;
-            
         }
 
         private Cell GetCellsFate(int x, int y)
