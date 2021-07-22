@@ -40,6 +40,7 @@ namespace GameOfLife.GameOfLifeLogic
 
             private static int CalculateWrapAroundIndexForDimension(int index, int dimensionSize)
             {
+                //blah
                 return (index + dimensionSize) % dimensionSize;
             }
     }
